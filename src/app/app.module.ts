@@ -25,6 +25,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { WorkerComponent } from './components/home/worker/worker.component';
 import { CustomerComponent } from './components/home/customer/customer.component';
 import { ManagerComponent } from './components/home/manager/manager.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -52,7 +53,8 @@ import { ManagerComponent } from './components/home/manager/manager.component';
     MatDividerModule,
     MatIconModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [SessionStorageService,CookieService],
   bootstrap: [AppComponent]
