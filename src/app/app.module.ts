@@ -26,6 +26,8 @@ import { WorkerComponent } from './components/home/worker/worker.component';
 import { CustomerComponent } from './components/home/customer/customer.component';
 import { ManagerComponent } from './components/home/manager/manager.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CustomerGroupsComponent } from './components/home/customer/customer-groups/customer-groups.component';
+import { GroupComponent } from './components/home/customer/customer-groups/group/group.component';
 
 
 
@@ -36,7 +38,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AdminComponent,
     WorkerComponent,
     CustomerComponent,
-    ManagerComponent
+    ManagerComponent,
+    CustomerGroupsComponent,
+    GroupComponent
   ],
   imports: [
     BrowserModule,

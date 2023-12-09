@@ -46,11 +46,15 @@
   border-color: #403955;
   margin: 20px;
   box-shadow: 0 4px 15px 1px rgba(0,0,0,.25);
+
   display: grid;
 }
 
 .groups{
   margin-top: 140px;
-  justify-content: center;
+}
+
+app-customer-groups{
+  padding-top: 126px;
 }
 
