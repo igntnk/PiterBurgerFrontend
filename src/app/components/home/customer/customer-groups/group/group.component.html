@@ -1,3 +1,6 @@
-<button type="button" class="btn btn-emc-primary" (click)="onClicked()">
-  <p>{{group.name}}</p>
+<button type="button" (click)="onGroupSelected()"
+class=" {{group.name}} bg-[#403955] text-[#FFE3CA] text-[15px] font-[30] rounded-[12px] h-[45px] w-[200px] m-[8px] font-['Dorsa'] shadow-[0px_4px_15px_rgba(0,0,0,0.3)]
+hover:shadow-[0px_4px_15px_rgba(40,40,60,0.8)] hover:bg-[#473f61] hover:h-[50px] hover:w-[205px] hover:text-[20px] focus:bg-[#564d73] focus:h-[50px] focus:w-[205px] focus:text-[25px] hover:duration-300 focus:duration-300 duration-150
+active:bg-[#272236]">
+  {{group.name}}
 </button>

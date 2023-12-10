@@ -1,4 +1,4 @@
 export class Group{
-  id!: BigInt;
+  id!: number;
   name!: string;
 }

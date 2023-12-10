@@ -5,17 +5,13 @@ import { Group } from 'src/app/model/group';
   selector: 'app-group',
   templateUrl: './group.component.html'
 })
-export class GroupComponent implements AfterViewInit {
+export class GroupComponent{
 
   @Input() group!:Group;
 
-  @Output() clicked = new EventEmitter();
+  @Output() groupSelected = new EventEmitter();
 
-  ngAfterViewInit(): void {
-      console.log(this.group);
-  }
-
-  onClicked(){
-    this.clicked.emit(this.group);
+  onGroupSelected(){
+    this.groupSelected.emit(this.group);
   }
 }

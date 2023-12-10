@@ -4,8 +4,7 @@ import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-customer',
-  templateUrl: './customer.component.html',
-  styleUrls: ['./customer.component.css']
+  templateUrl: './customer.component.html'
 })
 export class CustomerComponent {
 
