@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Group } from 'src/app/model/group';
 import { Product } from 'src/app/model/product';
 import { CustomerService } from 'src/app/services/customer-service.service';
@@ -13,6 +13,8 @@ export class CustomerGroupsComponent implements OnInit{
   groups: Group[] = [];
   products: Product[] = [];
 
+  @Output() groupPressed = new EventEmitter();
+
   ngOnInit(): void {
     this.customerService.getGroupsNames().subscribe(data => {
       this.groups = data;
@@ -23,8 +25,7 @@ export class CustomerGroupsComponent implements OnInit{
   onGroupSelected(group:Group){
     this.customerService.getProductsFromGroups(group.id).subscribe(data =>
       {
-        this.products = data;
-        console.log(this.products);
+        this.groupPressed.emit(data);
       })
   }
 }
