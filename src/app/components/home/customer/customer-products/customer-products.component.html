@@ -1,3 +1,3 @@
-<div *ngFor = "let product of products" class = "p-[15px]">
-  <app-product [product] = "product"></app-product>
+<div *ngFor = "let product of products" class = "p-[15px] z-[0]">
+  <app-product [product] = "product" (addButtonPressed)="onAddButtonPressed($event)"></app-product>
 </div>

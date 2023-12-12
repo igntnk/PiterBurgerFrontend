@@ -1,8 +1,9 @@
 <div class = "h-[100px] bg-[#FFE3CA] shadow-[0px_4px_15px_rgba(0,0,0,0.4)] flex justify-center items-center font-['Dorsa'] text-[76px]">
-  <div></div>
   <div id="logo" class = "flex">
     <div id="piter" class = "text-[#403955]">Piter</div>
     <div id="burger" class ="text-[#8B563F] text-[1100]">Burger</div>
   </div>
-  <mat-icon class="material-icons-round text-[40px] text-[#403955]" style="width: 40px; height:40px">shopping_basket</mat-icon>
+  <button (click)="onBucketClick()" class = "pointer-events-auto absolute right-[20px] rounded-[12px] p-[5px] bg-[#403955] hover:p-[10px] hover:duration-300 active:p-[7px] active:duration-50 active:bg-[#272236] duration-150">
+    <mat-icon matBadge={{amountOfProducts}} class="material-icons-round text-[40px] text-[#FFE3CA]" style="width: 40px; height:40px">shopping_basket</mat-icon>
+  </button>
 </div>

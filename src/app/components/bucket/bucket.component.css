@@ -1,0 +1,9 @@
+#bucket:hover{
+  transform: scale(105%);
+  transition: all 300ms ease-in-out;
+}
+
+#bucket{
+  transition:right 300ms ease-in-out;
+  transition:all 200ms ease-in-out;
+}

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from 'src/app/model/product';
 
 @Component({
@@ -8,4 +8,9 @@ import { Product } from 'src/app/model/product';
 export class CustomerProductsComponent {
   @Input() products: Product[] = [];
 
+  @Output() addButtonPressed = new EventEmitter();
+
+  onAddButtonPressed(data: Product){
+    this.addButtonPressed.emit(data);
+  }
 }

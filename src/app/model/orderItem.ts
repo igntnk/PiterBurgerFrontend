@@ -1,4 +1,11 @@
+import { Product } from "./product";
+
 export class OrderItem{
-  id: BigInt;
-  productId: BigInt;
+  count: number;
+  product: Product;
+
+  constructor(product: Product){
+    this.count = 1;
+    this.product = product;
+  }
 }

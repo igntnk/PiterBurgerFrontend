@@ -1,5 +1,5 @@
 export class Address{
-  id: BigInt;
+  id: number;
   active: boolean;
   address: string;
 }

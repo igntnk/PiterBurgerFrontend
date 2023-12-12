@@ -35,6 +35,7 @@ import { CustomerProductsComponent } from './components/home/customer/customer-p
 import { ProductComponent } from './components/home/customer/customer-products/product/product.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { BucketComponent } from './components/bucket/bucket.component';
 
 
 
@@ -51,7 +52,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     CustomerProductsComponent,
     ProductComponent,
     HeaderComponent,
-    SidebarComponent
+    SidebarComponent,
+    BucketComponent
   ],
   imports: [
     BrowserModule,

@@ -1,8 +1,12 @@
 export class Product{
-  id: BigInt;
+  id: number;
   name: string;
   description: string;
   photo: string;
-  price: BigInt;
+  price: number;
   enabled: boolean;
+
+  constructor(name: string){
+    this.name = name;
+  }
 }
