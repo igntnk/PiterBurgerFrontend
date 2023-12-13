@@ -24,6 +24,7 @@
     "@ng-bootstrap/ng-bootstrap": "^15.1.2",
     "@popperjs/core": "^2.11.6",
     "angular-in-memory-web-api": "^0.16.0",
+    "angular-notifier": "^14.0.0",
     "angular-web-storage": "^16.0.0",
     "bootstrap": "^5.2.3",
     "ngx-cookie-service": "^3.1.3",

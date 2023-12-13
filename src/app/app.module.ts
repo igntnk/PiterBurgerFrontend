@@ -20,6 +20,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { RouterLink } from '@angular/router';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { NotifierModule } from 'angular-notifier';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -36,6 +37,8 @@ import { ProductComponent } from './components/home/customer/customer-products/p
 import { HeaderComponent } from './components/header/header.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { BucketComponent } from './components/bucket/bucket.component';
+import { CustomerProfileComponent } from './components/home/customer/customer-profile/customer-profile.component';
+import { CustomerMainComponent } from './components/home/customer/customer-main/customer-main.component';
 
 
 
@@ -53,7 +56,9 @@ import { BucketComponent } from './components/bucket/bucket.component';
     ProductComponent,
     HeaderComponent,
     SidebarComponent,
-    BucketComponent
+    BucketComponent,
+    CustomerProfileComponent,
+    CustomerMainComponent
   ],
   imports: [
     BrowserModule,
@@ -76,6 +81,7 @@ import { BucketComponent } from './components/bucket/bucket.component';
     MatMenuModule,
     RouterLink,
     MatSidenavModule,
+    NotifierModule,
     NgbModule
   ],
   providers: [SessionStorageService,CookieService],
