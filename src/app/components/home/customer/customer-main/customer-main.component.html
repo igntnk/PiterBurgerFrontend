@@ -1,0 +1,4 @@
+<div class = "bg-[#554339] h-full">
+  <app-sidebar class = "fixed" (groupSelected)="groupSelected($event)"></app-sidebar>
+  <app-customer-products [products]="products" (addButtonPressed)="onAddProductPressed($event)" class = "justify-center pt-[110px] pl-[230px] flex flex-wrap text-center"></app-customer-products>
+</div>

@@ -1,0 +1,27 @@
+<div id="bucket" class = "font-['Lora'] font-bold text-[#554339] text-[20px] pt-[10px] justify-center bg-[#FFE3CA] w-[400px] min-h-[80px] rounded-[15px] fixed t shadow-[0_4px_15px_rgba(0,0,0,0.3)] z-[2] right-[-420px] mt-[110px]">
+  <div class = "h-[20px] text-[30px] mt-[5px] flex justify-center">
+    <div>Корзина</div>
+    <button (click)="onBackPressed()" class = "absolute right-[20px] bg-[#403955] p-[5px] rounded-[10px] active:bg-[#272236] active:p-[5px] hover:p-[7px] hover:duration-[500ms] active:duration-100 duration-200">
+      <mat-icon class="text-[#FFE3CA]">arrow_forward_ios</mat-icon>
+    </button>
+  </div>
+  <div class = "align-center mx-auto  w-[200px] h-[2px] bg-[#826658] mt-[15px] rounded-[1px]"></div>
+  <div *ngFor = "let item of items; let i = index" class = "mt-[5px] mb-[10px] mx-[10px] text-[15px] font-thin">
+    <div class = "flex justify-between items-center">
+      <img src = {{item.product.photo}} class = "w-[50px] h-[50px] bg-[#554339] rounded-[10px] shadow-[inset_0_-2px_15px_rgba(0,0,0,0.3)] hover:w-[150px] hover:h-[150px] hover:mt-[10px] hover:duration-[500ms] duration-200">
+      <div>{{item.product.name}} x {{item.count}}</div>
+      <div>{{item.product.price*item.count}} руб</div>
+      <button (click)="onDeletePressed(i)" class = "bg-[#403955] active:bg-[#272236] text-[#FFE3CA] mt-[10px] rounded-[10px] p-[5px] hover:p-[10px] hover:duration-300 duration-150 active:p-[7px] active:duratuion-[50ms]">Удалить</button>
+    </div>
+    <div *ngIf = "items.length-1 !== i" class = "w-[100px] h-[2px] bg-[#a68471] mt-[10px] rounded-[1px]"></div>
+  </div>
+  <div *ngIf = "items.length == 0" class = "font-thin text-[15px] my-[5px] flex justify-center">В корзине нету продуктов</div>
+  <div *ngIf = "items.length != 0">
+    <div class = "align-center mx-auto  w-[200px] h-[2px] bg-[#826658] mt-[15px] rounded-[1px]"></div>
+    <div class = "my-[15px] flex justify-center items-center">
+      Итого: {{allPrice}}руб
+      <button (click)="onCreateClicked()" class = "bg-[#403955] text-[#FFE3CA] p-[10px] rounded-[10px] ml-[20px] hover:p-[12px] active:bg-[#272236] active:p-[9px] hover:duration-300 duration-100">Сделать заказ</button>
+    </div>
+  </div>
+</div>
+

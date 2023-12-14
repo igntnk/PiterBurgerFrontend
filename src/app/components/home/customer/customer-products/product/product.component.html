@@ -1,0 +1,8 @@
+<div class = "bg-[#FFE3CA] rounded-[16px] w-[190px] h-[280px] flex flex-col items-center hover:scale-[105%] active:w-[195px] active:h-[280px] shadow-[0_4px_15px_rgba(0,0,0,0.3)] hover:duration-300 duration-150 active:duratuion-[50ms]">
+  <img src={{product.photo}} class = "z-[1] bg-[#554339] mt-[20px] hover:scale-[110%] font-[1000] text-[40px] w-[150px] h-[150px] rounded-[10px] hover:rounded-[10px] shadow-[inset_0_-2px_15px_rgba(0,0,0,0.3)] flex items-center justify-center hover:duration-300 duration-150">
+  <div class = "text-[#554339] text-[15px] h-fit rounded-[12px] pt-[10px]">{{product.name}}</div>
+  <div class = "text-[#554339]">{{product.price}} руб.</div>
+  <button (click)="onAddButtonPressen()" class = "bg-[#403955] active:bg-[#272236] text-[#FFE3CA] mt-[10px] rounded-[10px] p-[5px] hover:p-[10px] hover:duration-300 duration-150 active:p-[7px] active:duratuion-[50ms]">Добавить</button>
+</div>
+
+

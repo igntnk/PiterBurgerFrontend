@@ -1,11 +1,11 @@
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @font-face {
-  font-family: "San Francisco";
-  src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff");
+  font-family: 'Dorsa';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Dorsa'), url('https://fonts.cdnfonts.com/s/15697/Dorsa-Regular.woff') format('woff');
 }
 
-html{
-  background: #3b3b3b;
-  font-family: "San Francisco";
-}

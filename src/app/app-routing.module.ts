@@ -6,10 +6,13 @@ import { AuthGuard } from './auth/auth.guard';
 import { CustomerComponent } from './components/home/customer/customer.component';
 import { ManagerComponent } from './components/home/manager/manager.component';
 import { WorkerComponent } from './components/home/worker/worker.component';
+import { CustomerProfileComponent } from './components/home/customer/customer-profile/customer-profile.component';
+import { CustomerMainComponent } from './components/home/customer/customer-main/customer-main.component';
 
 const routes: Routes = [{
   path:'',
-  component: CustomerComponent,
+  redirectTo: 'customer/main',
+  pathMatch: 'full'
   },
   {
     path: 'login',
@@ -32,8 +35,19 @@ const routes: Routes = [{
   },
   {
     path:'customer',
-    component:CustomerComponent
-  }
+    component:CustomerComponent,
+    children: [
+      {
+        path: 'profile',
+        component: CustomerProfileComponent,
+        canActivate:[AuthGuard],
+      },
+      {
+        path: 'main',
+        component: CustomerMainComponent
+      }
+    ]
+  },
 ];
 
 @NgModule({
