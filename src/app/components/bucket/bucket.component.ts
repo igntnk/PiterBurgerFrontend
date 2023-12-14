@@ -1,6 +1,9 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Order } from 'src/app/model/order';
 import { OrderItem } from 'src/app/model/orderItem';
 import { Product } from 'src/app/model/product';
+import { CustomerService } from 'src/app/services/customer-service.service';
+import { SharedService } from 'src/app/services/local/shared.service';
 
 @Component({
   selector: 'app-bucket',
@@ -17,6 +20,11 @@ export class BucketComponent implements OnChanges{
 
   @Input() rightPar = -420;
 
+  constructor(
+    private sharedService: SharedService,
+    private customerService: CustomerService
+  ){}
+
   onDeletePressed(index: number){
     let found = this.items[index];
     this.allPrice -= found.product.price;
@@ -32,6 +40,15 @@ export class BucketComponent implements OnChanges{
     let elementToMove = document.getElementById("bucket");
     this.rightPar = changes['rightPar']?changes['rightPar'].currentValue : this.rightPar;
     elementToMove? elementToMove.style.right = this.rightPar +'px': null;
+  }
+
+  onCreateClicked(){
+    this.customerService.sendOrder(new Order("", this.items)).subscribe(data =>{
+      console.log(data);
+    });
+    this.sharedService.onOrderSent(null);
+    this.allPrice = 0;
+    this.items = [];
   }
 
 }

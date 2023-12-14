@@ -57,6 +57,13 @@ export class CustomerComponent {
         sharedService.onNameChanged(data);
       }) : this.showWarning();
     })
+
+    sharedService.orderEmmited.subscribe(unused => {
+      this.rightPar = -420;
+      this.items = [];
+      this.allPrice = 0;
+      this.amountOfProducts = 0;
+    })
   }
 
   showWarning(){
@@ -98,6 +105,5 @@ export class CustomerComponent {
   onLogoClicked(data: boolean){
     this.router.navigateByUrl('customer/main');
   }
-
 
 }

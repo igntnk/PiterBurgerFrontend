@@ -11,7 +11,8 @@ import { CustomerMainComponent } from './components/home/customer/customer-main/
 
 const routes: Routes = [{
   path:'',
-  component: CustomerComponent,
+  redirectTo: 'customer/main',
+  pathMatch: 'full'
   },
   {
     path: 'login',
@@ -39,7 +40,7 @@ const routes: Routes = [{
       {
         path: 'profile',
         component: CustomerProfileComponent,
-        canActivate:[AuthGuard]
+        canActivate:[AuthGuard],
       },
       {
         path: 'main',

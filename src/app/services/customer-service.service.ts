@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Group } from '../model/group';
 import { Observable, tap } from 'rxjs';
+import { Order } from '../model/order';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ import { Observable, tap } from 'rxjs';
 export class CustomerService {
 
   customerUrl = "api/customer/";
+  orderUrl = "api/order/"
   headers = new HttpHeaders().set("email", this.authService.LoggedUser.email);
 
   constructor(
@@ -34,10 +36,18 @@ export class CustomerService {
    }
 
    setMyName(name: string):Observable<any>{
-    return this.http.post(this.customerUrl + "name",name,{headers:this.headers}).pipe();
+    return this.http.post(this.customerUrl + "name",name).pipe();
    }
 
    getHistory():Observable<any>{
-    return this.http.get(this.customerUrl + "history",{headers:this.headers}).pipe();
+    return this.http.get(this.customerUrl + "history").pipe();
+   }
+
+   getActive():Observable<any>{
+    return this.http.get(this.customerUrl + "active").pipe();
+   }
+
+   sendOrder(order: Order):Observable<any>{
+    return this.http.post(this.orderUrl + "create", order).pipe();
    }
 }

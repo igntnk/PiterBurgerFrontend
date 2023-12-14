@@ -1,0 +1,16 @@
+<div class = "mt-[20px] flex flex-col pb-[20px] border-t-[6px] border-[#554339] rounded-[10px] shadow-[0px_1px_10px_rgba(0,0,0,0.2)]">
+  <div class = "flex justify-center items-center">
+    <div class = "flex flex-col">
+      <span class = "mt-[15px]">Заказ №{{order.id}}</span>
+      <span class = "mt-[10px]">Дата заказа {{order.creationDate.toString()}}</span>
+    </div>
+    <div class = "bg-[#403955] text-[#FFE3CA] h-[40px] w-[100px] flex items-center justify-center rounded-[12px] pr-[3px] ml-[20px]">{{order.status}}</div>
+  </div>
+  <div *ngFor = "let item of order.items; let i = index " class = "pl-[15px]">
+    <app-history-product [amount]="item.count" [product]="item.product"></app-history-product>
+    <div *ngIf="order.items.length-1 != i" class = "h-[2px] w-[90%] rounded-[1px] bg-[#826658] mx-auto"></div>
+  </div>
+  <div class = "h-[2px] w-[30%] rounded-[1px] bg-[#554339] mx-auto mb-[20px]"></div>
+  <span>Оплачено: {{countPrice()}} руб</span>
+</div>
+

@@ -41,6 +41,8 @@ import { CustomerProfileComponent } from './components/home/customer/customer-pr
 import { CustomerMainComponent } from './components/home/customer/customer-main/customer-main.component';
 import { OrderHistoryComponent } from './components/home/customer/order-history/order-history.component';
 import { ActiveOrdersComponent } from './components/home/customer/active-orders/active-orders.component';
+import { OrderComponent } from './components/home/customer/order/order.component';
+import { HistoryProductComponent } from './components/home/customer/history-product/history-product.component';
 
 
 
@@ -62,7 +64,9 @@ import { ActiveOrdersComponent } from './components/home/customer/active-orders/
     CustomerProfileComponent,
     CustomerMainComponent,
     OrderHistoryComponent,
-    ActiveOrdersComponent
+    ActiveOrdersComponent,
+    OrderComponent,
+    HistoryProductComponent
   ],
   imports: [
     BrowserModule,

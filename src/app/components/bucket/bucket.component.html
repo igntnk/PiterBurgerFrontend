@@ -18,7 +18,10 @@
   <div *ngIf = "items.length == 0" class = "font-thin text-[15px] my-[5px] flex justify-center">В корзине нету продуктов</div>
   <div *ngIf = "items.length != 0">
     <div class = "align-center mx-auto  w-[200px] h-[2px] bg-[#826658] mt-[15px] rounded-[1px]"></div>
-    <div class = "my-[15px] flex justify-center">Итого: {{allPrice}}руб</div>
+    <div class = "my-[15px] flex justify-center items-center">
+      Итого: {{allPrice}}руб
+      <button (click)="onCreateClicked()" class = "bg-[#403955] text-[#FFE3CA] p-[10px] rounded-[10px] ml-[20px] hover:p-[12px] active:bg-[#272236] active:p-[9px] hover:duration-300 duration-100">Сделать заказ</button>
+    </div>
   </div>
 </div>
 

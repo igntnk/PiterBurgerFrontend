@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { SharedService } from 'src/app/services/local/shared.service';
 
 @Component({
   selector: 'app-header',
@@ -14,6 +15,14 @@ export class HeaderComponent {
   @Output() profileClicked = new EventEmitter();
 
   profileView: boolean = false;
+
+  constructor(
+    private sharedService: SharedService
+  ){
+    this.sharedService.orderEmmited.subscribe(unused => {
+      this.amountOfProducts = 0;
+    })
+  }
 
   onBucketClick(){
     this.bucketClicked.emit(8);

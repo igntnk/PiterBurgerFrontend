@@ -87,7 +87,6 @@ export class AuthService {
       "X-Requested-With": "XMLHttpRequest"
       } : {}
     );
-
     console.log('authenticate ')
     this.authentication(headers).subscribe((data: CredentialResponce) => {
       if (data != null) {
@@ -138,7 +137,8 @@ export class AuthService {
   }
 
   authentication(headers: any): Observable<any> {
-    return this.http.post('api/auth/login', { headers: headers })
+    debugger;
+    return this.http.get('api/auth/login', { headers: headers })
         .pipe(
             tap(data => {console.log("login: " + data)}),
             catchError(this.handleLoginError('login error', []))

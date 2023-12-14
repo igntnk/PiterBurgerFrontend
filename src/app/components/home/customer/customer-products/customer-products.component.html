@@ -1,3 +1,5 @@
-<div *ngFor = "let product of products" class = "p-[15px] z-[0]">
-  <app-product [product] = "product" (addButtonPressed)="onAddButtonPressed($event)"></app-product>
+<div *ngFor = "let product of products" class = "p-[10px] z-[0]">
+  <div class = "overflow-hidden w-[210px] h-[300px] flex justify-center items-center">
+    <app-product [product] = "product" (addButtonPressed)="onAddButtonPressed($event)"></app-product>
+  </div>
 </div>
