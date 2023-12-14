@@ -39,6 +39,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { BucketComponent } from './components/bucket/bucket.component';
 import { CustomerProfileComponent } from './components/home/customer/customer-profile/customer-profile.component';
 import { CustomerMainComponent } from './components/home/customer/customer-main/customer-main.component';
+import { OrderHistoryComponent } from './components/home/customer/order-history/order-history.component';
+import { ActiveOrdersComponent } from './components/home/customer/active-orders/active-orders.component';
 
 
 
@@ -58,7 +60,9 @@ import { CustomerMainComponent } from './components/home/customer/customer-main/
     SidebarComponent,
     BucketComponent,
     CustomerProfileComponent,
-    CustomerMainComponent
+    CustomerMainComponent,
+    OrderHistoryComponent,
+    ActiveOrdersComponent
   ],
   imports: [
     BrowserModule,

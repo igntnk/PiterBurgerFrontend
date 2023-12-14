@@ -33,6 +33,12 @@ export class CustomerProfileComponent implements OnInit {
     this.sharedService.onApplyPressed(type);
   }
 
+  onHistoryClicked(){
+    this.customerService.getHistory().subscribe(data =>{
+      console.log(data);
+    })
+  }
+
 }
 
 

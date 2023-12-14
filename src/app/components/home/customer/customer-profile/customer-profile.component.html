@@ -1,8 +1,13 @@
 <div class = "bg-[#554339] pt-[110px] flex flex-col">
   <input id="name" value="" placeholder={{myName}} class = "placeholder-current outline-none border-[rgba(0,0,0,0)] bg-[#554339] text-[#FFE3CA] font-['Lora'] font-black text-[60px] text-center pb-[30px] pt-[20px]">
   <div class = "w-[100%] h-[calc(100vh-229px)] rounded-t-[20px] bg-[#FFE3CA] shadow-[0px_0px_15px_rgba(0,0,0,0.2)] flex flex-col pt-[20px] font-['Lora'] text-[20px] items-center">
-    <button (click)="onApplyClicked()" class="p-[10px] mb-[15px] w-[50%] h-[50px] shadow-[0px_0px_15px_rgba(0,0,0,0.2)] rounded-[15px] hover:scale-[115%] hover:duration-300 duration-100">Подтвердить смену имени</button>
-    <button class="p-[10px] mb-[15px] w-[50%] h-[50px] shadow-[0px_0px_15px_rgba(0,0,0,0.2)] rounded-[15px] hover:scale-[115%] hover:duration-300 duration-100">История заказов</button>
-    <button class="p-[10px] mb-[15px] w-[50%] h-[50px] shadow-[0px_0px_15px_rgba(0,0,0,0.2)] rounded-[15px] hover:scale-[115%] hover:duration-300 duration-100">Активные заказы</button>
+    <button (click)="onApplyClicked()" class="p-[10px] mb-[15px] w-[50%] h-[50px] shadow-[0px_0px_15px_rgba(0,0,0,0.2)] rounded-[15px] hover:scale-[115%] hover:duration-300 active:scale-[110%] active:duration-[50ms] duration-100">Подтвердить смену имени</button>
+    <button (click)="onHistoryClicked()" class="flex flex-col items-center pt-[15px] bg-[#FFE3CA] p-[10px] mb-[15px] w-[50%] h-[50px] shadow-[0px_0px_15px_rgba(0,0,0,0.2)] rounded-[15px] hover:scale-[115%] hover:duration-300 active:scale-[110%] focus:h-[50%] focus:scale-[220%] focus:w-[40%] focus:z-3 focus:duration-[600ms] duration-200 ">
+      <div>История заказов</div>
+      <div class = "overflow-auto"></div>
+    </button>
+    <button class="flex flex-col items-center pt-[15px] bg-[#FFE3CA] p-[10px] mb-[15px] w-[50%] h-[50px] shadow-[0px_0px_15px_rgba(0,0,0,0.2)] rounded-[15px] hover:scale-[115%] hover:duration-300 active:scale-[110%] focus:h-[40%] focus:scale-[240%] focus:w-[40%] focus:z-3 focus:duration-[600ms] duration-200">
+      <div>Активные заказы</div>
+    </button>
   </div>
 </div>

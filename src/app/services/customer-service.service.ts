@@ -11,6 +11,7 @@ import { Observable, tap } from 'rxjs';
 export class CustomerService {
 
   customerUrl = "api/customer/";
+  headers = new HttpHeaders().set("email", this.authService.LoggedUser.email);
 
   constructor(
     private http: HttpClient,
@@ -33,7 +34,10 @@ export class CustomerService {
    }
 
    setMyName(name: string):Observable<any>{
-    const headers = new HttpHeaders().set("email", this.authService.LoggedUser.email);
-    return this.http.post(this.customerUrl + "name",name,{headers}).pipe();
+    return this.http.post(this.customerUrl + "name",name,{headers:this.headers}).pipe();
+   }
+
+   getHistory():Observable<any>{
+    return this.http.get(this.customerUrl + "history",{headers:this.headers}).pipe();
    }
 }
