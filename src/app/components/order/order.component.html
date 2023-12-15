@@ -1,0 +1,23 @@
+<div *ngIf="showOrder || customerView" class = "mt-[20px] flex flex-col pb-[20px] border-t-[6px] border-[#554339] rounded-[10px] shadow-[0px_1px_10px_rgba(0,0,0,0.2)]">
+  <div class = "flex justify-center items-center">
+    <div class = "flex flex-col">
+      <span class = "mt-[15px]">Заказ №{{order.id}}</span>
+      <span class = "mt-[10px]">Дата заказа {{order.creationDate.toString()}}</span>
+    </div>
+    <div style="background-color: {{statusColor}}; box-shadow: 0px 2px 10px {{statusColor}};" class = "text-[#FFE3CA] h-[40px] w-fit flex items-center justify-center rounded-[12px] px-[15px] ml-[20px] ">{{orderStatus}}</div>
+    <div *ngIf="managerView" class = "bg-[#403955] w-[40px] h-[40px] justify-center items-center flex rounded-[12px] shadow-[0px_2px_10px_rgba(0,0,0,0.5)] absolute right-[26%] hover:scale-[120%] active:scale-[105%] hover:duration-300 duration-100">
+      <mat-icon style="width: 30px; height: 30px;" class = "text-[30px] text-[#FFE3CA]">ac_unit</mat-icon>
+    </div>
+  </div>
+  <div *ngFor = "let item of order.items; let i = index " class = "pl-[15px]">
+    <app-history-product [workerView]="workerView" [amount]="item.count" [product]="item.product"></app-history-product>
+    <div *ngIf="order.items.length-1 != i" class = "h-[2px] w-[90%] rounded-[1px] bg-[#826658] mx-auto"></div>
+  </div>
+  <div class = "h-[2px] w-[30%] rounded-[1px] bg-[#554339] mx-auto mb-[20px]"></div>
+  <span *ngIf="!workerView">Оплачено: {{countPrice()}} руб</span>
+  <div *ngIf="workerView" class = "flex mx-[15px] justify-center">
+    <button (click)="changeStatus()" class = "bg-[#403955] text-[#FFE3CA] h-[40px] w-fit rounded-[12px] px-[15px] ml-[20px] hover:scale-[110%] active:scale-[105%] hover:duration-300 duration-100">{{nextStageText}}</button>
+    <button (click)="deleteOrder()" *ngIf="order.status == 'FREEZE'" class = "bg-[#824c4c] text-[#FFE3CA] h-[40px] w-fit rounded-[12px] px-[15px] ml-[20px]">Удалить заказ</button>
+  </div>
+</div>
+

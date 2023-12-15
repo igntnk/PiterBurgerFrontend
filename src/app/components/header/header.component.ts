@@ -10,6 +10,8 @@ export class HeaderComponent {
 
   @Input() amountOfProducts:number;
 
+  @Input() viewForWorker: boolean;
+
   @Output() bucketClicked = new EventEmitter();
   @Output() logoClicked = new EventEmitter();
   @Output() profileClicked = new EventEmitter();

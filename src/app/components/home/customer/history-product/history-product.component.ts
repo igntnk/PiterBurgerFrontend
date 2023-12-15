@@ -8,4 +8,5 @@ import { Product } from 'src/app/model/product';
 export class HistoryProductComponent {
   @Input() product: Product;
   @Input() amount: number = 1;
+  @Input() workerView:boolean;
 }
