@@ -31,12 +31,10 @@ export class CustomerComponent {
   bucketPressed = new EventEmitter();
 
   constructor(
-    private titleService:Title,
     private router: Router,
     private sharedService: SharedService,
     private customerService: CustomerService
     ){
-    this.titleService.setTitle("PiterBurger");
 
     sharedService.changeEmitted.subscribe(data => {
       this.amountOfProducts++;

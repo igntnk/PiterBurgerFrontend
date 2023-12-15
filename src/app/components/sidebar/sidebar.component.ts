@@ -9,7 +9,7 @@ export class SidebarComponent {
 
   @Output() groupSelected = new EventEmitter();
 
-  onGroupSelectd(data: Product[]){
+  onGroupSelectd(data: any){
     this.groupSelected.emit(data);
   }
 

@@ -39,12 +39,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { BucketComponent } from './components/bucket/bucket.component';
 import { CustomerProfileComponent } from './components/home/customer/customer-profile/customer-profile.component';
 import { CustomerMainComponent } from './components/home/customer/customer-main/customer-main.component';
-import { OrderHistoryComponent } from './components/home/customer/order-history/order-history.component';
-import { ActiveOrdersComponent } from './components/home/customer/active-orders/active-orders.component';
-import { OrderComponent } from './components/home/customer/order/order.component';
+import { OrderComponent } from './components/order/order.component';
 import { HistoryProductComponent } from './components/home/customer/history-product/history-product.component';
-import { WorkerHeaderComponent } from './components/home/worker-header/worker-header.component';
-import { WorkerOrderComponent } from './components/home/worker-order/worker-order.component';
 
 
 
@@ -65,12 +61,8 @@ import { WorkerOrderComponent } from './components/home/worker-order/worker-orde
     BucketComponent,
     CustomerProfileComponent,
     CustomerMainComponent,
-    OrderHistoryComponent,
-    ActiveOrdersComponent,
     OrderComponent,
     HistoryProductComponent,
-    WorkerHeaderComponent,
-    WorkerOrderComponent
   ],
   imports: [
     BrowserModule,
