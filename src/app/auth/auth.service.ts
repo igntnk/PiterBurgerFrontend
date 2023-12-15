@@ -137,7 +137,6 @@ export class AuthService {
   }
 
   authentication(headers: any): Observable<any> {
-    debugger;
     return this.http.get('api/auth/login', { headers: headers })
         .pipe(
             tap(data => {console.log("login: " + data)}),

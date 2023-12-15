@@ -43,6 +43,8 @@ import { OrderHistoryComponent } from './components/home/customer/order-history/
 import { ActiveOrdersComponent } from './components/home/customer/active-orders/active-orders.component';
 import { OrderComponent } from './components/home/customer/order/order.component';
 import { HistoryProductComponent } from './components/home/customer/history-product/history-product.component';
+import { WorkerHeaderComponent } from './components/home/worker-header/worker-header.component';
+import { WorkerOrderComponent } from './components/home/worker-order/worker-order.component';
 
 
 
@@ -66,7 +68,9 @@ import { HistoryProductComponent } from './components/home/customer/history-prod
     OrderHistoryComponent,
     ActiveOrdersComponent,
     OrderComponent,
-    HistoryProductComponent
+    HistoryProductComponent,
+    WorkerHeaderComponent,
+    WorkerOrderComponent
   ],
   imports: [
     BrowserModule,
