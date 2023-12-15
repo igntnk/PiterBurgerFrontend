@@ -17,30 +17,36 @@ const routes: Routes = [{
   {
     path: 'login',
     component: LoginComponent,
+    title:"Вход в PiterBurger"
   },
   {
     path: 'admin',
     component: AdminComponent,
-    canActivate:[AuthGuard]
+    canActivate:[AuthGuard],
+    title:"Админ Бургерной"
   },
   {
     path: 'manager',
     component: ManagerComponent,
-    canActivate:[AuthGuard]
+    canActivate:[AuthGuard],
+    title:"Менеджер Бургерной"
   },
   {
     path: 'worker',
     component: WorkerComponent,
-    canActivate:[AuthGuard]
+    canActivate:[AuthGuard],
+    title:"Работник бургерной"
   },
   {
     path:'customer',
     component:CustomerComponent,
+    title:"PiterBurger",
     children: [
       {
         path: 'profile',
         component: CustomerProfileComponent,
         canActivate:[AuthGuard],
+        title:"Ваш профиль"
       },
       {
         path: 'main',

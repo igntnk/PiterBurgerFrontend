@@ -1,1 +1,9 @@
-<app-worker-header></app-worker-header>
+<app-header [viewForWorker]=true class = "fixed w-[100%] z-2 top-0"></app-header>
+<div class = "bg-[#FFE3CA] flex justify-center">
+  <div class = "pt-[120px] w-[50%]">
+    <div *ngFor = "let order of orders; let i = index;" class = "bg-[#FFE3CA] mb-[20px]">
+      <app-order [workerView]=true [managerView]=false [order] = "order"></app-order>
+     </div>
+  </div>
+</div>
+
