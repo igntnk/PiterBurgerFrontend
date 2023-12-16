@@ -11,6 +11,7 @@ export class HeaderComponent {
   @Input() amountOfProducts:number;
 
   @Input() viewForWorker: boolean;
+  @Input() viewForAdmin: boolean = false;
 
   @Output() bucketClicked = new EventEmitter();
   @Output() logoClicked = new EventEmitter();

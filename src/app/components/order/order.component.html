@@ -17,7 +17,7 @@
   <span *ngIf="!workerView">Оплачено: {{countPrice()}} руб</span>
   <div *ngIf="workerView" class = "flex mx-[15px] justify-center">
     <button (click)="changeStatus()" class = "bg-[#403955] text-[#FFE3CA] h-[40px] w-fit rounded-[12px] px-[15px] ml-[20px] hover:scale-[110%] active:scale-[105%] hover:duration-300 duration-100">{{nextStageText}}</button>
-    <button (click)="deleteOrder()" *ngIf="order.status == 'FREEZE'" class = "bg-[#824c4c] text-[#FFE3CA] h-[40px] w-fit rounded-[12px] px-[15px] ml-[20px]">Удалить заказ</button>
+    <button (click)="deleteOrder()" *ngIf="order.status == 'FREEZE'" class = "bg-[#824c4c] text-[#FFE3CA] h-[40px] w-fit rounded-[12px] px-[15px] ml-[20px] hover:scale-[110%] active:scale-[105%] hover:duration-300 duration-100">Удалить заказ</button>
   </div>
 </div>
 
