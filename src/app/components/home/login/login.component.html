@@ -1,16 +1,1 @@
-<app-header [viewForWorker]=true class = "fixed w-[100%] top-[0px] z-2" ></app-header>
-<div class = "bg-[#554339] mt-[120px] flex flex-col justify-center items-center">
-  <div class = "font-['Lora'] text-[40px] font-bold text-[#FFE3CA] text-center mb-[20px]">Вход в аккаунт</div>
-  <div class="w-[30%] my-2">
-    <input type="text" placeholder="Почта" [(ngModel)]="credential.email" required class="bg-[#272236] p-[10px] rounded-[12px] text-[#FFE3CA] w-[100%] shadow-[0px_2px_10px_rgba(0,0,0,0.5)] hover:scale-[110%] active:scale-[105%] hover:duration-300 duration-100 focus:border-teal-500 focus:outline-none focus:ring-[#2e2724] focus:border-[#FFE3CA] focus:border-2">
-  </div>
 
-  <div class="w-[30%] my-2">
-      <input type="password" placeholder="Пароль" [(ngModel)]="credential.password" required class="bg-[#272236] p-[10px] rounded-[12px] text-[#FFE3CA] w-[100%] shadow-[0px_2px_10px_rgba(0,0,0,0.5)] hover:scale-[110%] active:scale-[105%] hover:duration-300 duration-100 focus:border-teal-500 focus:outline-none focus:ring-[#2e2724] focus:border-[#FFE3CA] focus:border-2 border-solid">
-  </div>
-
-  <div *ngIf="errorAuth" style="margin-bottom: 25px; color: red">
-      Wrong username or password
-  </div>
-  <button (click)="login()" class = "bg-[#2e2724] w-[20%] text-[#FFE3CA] h-[40px] rounded-[12px] shadow-[0px_2px_10px_rgba(0,0,0,0.5)] hover:scale-[110%] active:scale-[105%] hover:duration-300 duration-100">Log in</button>
-</div>

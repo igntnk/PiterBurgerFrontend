@@ -6,7 +6,6 @@ import { AuthGuard } from './auth/auth.guard';
 import { CustomerComponent } from './components/home/customer/customer.component';
 import { ManagerComponent } from './components/home/manager/manager.component';
 import { WorkerComponent } from './components/home/worker/worker.component';
-import { CustomerProfileComponent } from './components/home/customer/customer-profile/customer-profile.component';
 import { CustomerMainComponent } from './components/home/customer/customer-main/customer-main.component';
 
 const routes: Routes = [{
@@ -42,12 +41,6 @@ const routes: Routes = [{
     component:CustomerComponent,
     title:"PiterBurger",
     children: [
-      {
-        path: 'profile',
-        component: CustomerProfileComponent,
-        canActivate:[AuthGuard],
-        title:"Ваш профиль"
-      },
       {
         path: 'main',
         component: CustomerMainComponent

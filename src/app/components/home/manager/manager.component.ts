@@ -7,18 +7,7 @@ import { OrderService } from 'src/app/services/order.service';
   selector: 'app-manager',
   templateUrl: './manager.component.html'
 })
-export class ManagerComponent implements OnInit {
-  orders: Order[];
+export class ManagerComponent {
 
-  constructor(
-    private orderService: OrderService
-  ){
-  }
-
-  ngOnInit(): void {
-      this.orderService.getAvtiveOrders().subscribe(data => {
-        this.orders = data;
-      })
-  }
 
 }

@@ -1,5 +1,3 @@
-import { GroupComponent } from './components/home/customer/customer-groups/group/group.component';
-import { CustomerGroupsComponent } from './components/home/customer/customer-groups/customer-groups.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -32,16 +30,14 @@ import { WorkerComponent } from './components/home/worker/worker.component';
 import { CustomerComponent } from './components/home/customer/customer.component';
 import { ManagerComponent } from './components/home/manager/manager.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { CustomerProductsComponent } from './components/home/customer/customer-products/customer-products.component';
-import { ProductComponent } from './components/home/customer/customer-products/product/product.component';
 import { HeaderComponent } from './components/header/header.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { SidebarComponent } from './components/home/customer/customer-main/sidebar/sidebar.component';
 import { BucketComponent } from './components/bucket/bucket.component';
-import { CustomerProfileComponent } from './components/home/customer/customer-profile/customer-profile.component';
 import { CustomerMainComponent } from './components/home/customer/customer-main/customer-main.component';
-import { OrderComponent } from './components/order/order.component';
-import { HistoryProductComponent } from './components/home/customer/history-product/history-product.component';
 import { UserComponent } from './components/user/user.component';
+import { GroupsComponent } from './components/home/customer/customer-main/sidebar/groups/groups.component';
+import { ProductsComponent } from './components/home/customer/customer-main/products/products.component';
+import { ProductCardComponent } from './components/home/customer/customer-main/product-card/product-card.component';
 
 
 
@@ -53,18 +49,14 @@ import { UserComponent } from './components/user/user.component';
     WorkerComponent,
     CustomerComponent,
     ManagerComponent,
-    CustomerGroupsComponent,
-    GroupComponent,
-    CustomerProductsComponent,
-    ProductComponent,
     HeaderComponent,
     SidebarComponent,
     BucketComponent,
-    CustomerProfileComponent,
     CustomerMainComponent,
-    OrderComponent,
-    HistoryProductComponent,
     UserComponent,
+    GroupsComponent,
+    ProductsComponent,
+    ProductCardComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,30 @@
+#group{
+  background-color: #554339;
+  width: 240px;
+  height: 60px;
+  margin: 5px;
+  border-radius: 15px;
+  color: #FFE3CA;
+  font-size: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+
+  transition:
+    transform 0.4s,
+    background-color 0.4s,
+    font-size 0.4s;
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0, 0.98);
+}
+
+#group:hover,#group:focus{
+  transform: scale(103%);
+}
+
+#group:active{
+  transform: scale(100%);
+  background-color: #41332b;
+}
+
+#group:focus{
+  font-size: 25px;
+  background-color: #70594b;
+}
