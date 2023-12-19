@@ -3,14 +3,10 @@ import { Product } from 'src/app/model/product';
 
 @Component({
   selector: 'app-sidebar',
-  templateUrl: './sidebar.component.html'
+  templateUrl: './sidebar.component.html',
+  styleUrls:['./sidebar.component.css']
 })
 export class SidebarComponent {
 
-  @Output() groupSelected = new EventEmitter();
-
-  onGroupSelectd(data: any){
-    this.groupSelected.emit(data);
-  }
 
 }

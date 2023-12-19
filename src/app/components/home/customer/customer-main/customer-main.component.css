@@ -1,0 +1,68 @@
+:root{
+  --margin: '---';
+  --display: '---';
+  --cardOpacity: '---';
+  --cardScale: '---';
+}
+
+app-sidebar{
+  display: flex;
+  align-items: center;
+  z-index: 1;
+
+  transition:
+    margin-left 1s;
+}
+
+@media screen and (max-width: 1465px) {
+  app-sidebar{
+    margin-left: var(--margin);
+  }
+}
+
+app-products{
+  color: #794b37;
+  max-width: 1000px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex: 1 1 auto;
+}
+
+#main::-webkit-scrollbar {
+  display: none;
+}
+
+#main{
+  flex: 1 1 100%;
+
+  overflow: scroll;
+}
+
+app-product-card{
+  color: #583728;
+  background-color: #FFE3CA;
+  border-radius: 20px;
+  box-shadow: 0 0 35px rgba(0,0,0,0.3);
+  width: 50%;
+  min-width: 350px;
+  max-width: 500px;
+  height: 50vh;
+  min-height: 500px;
+
+  opacity: var(--cardOpacity);
+  transform: scale(var(--cardScale));
+
+  transition:
+    opacity 400ms,
+    transform 400ms;
+}
+
+#uponProductCard{
+  width: 100vw;
+  position: absolute;
+  display: var(--display);
+  justify-content: center;
+  align-items: center;
+}
+

@@ -4,39 +4,32 @@ import { SharedService } from 'src/app/services/local/shared.service';
 
 @Component({
   selector: 'app-header',
-  templateUrl: './header.component.html'
+  templateUrl: './header.component.html',
+  styleUrls:['./header.component.css']
 })
 export class HeaderComponent {
 
-  @Input() amountOfProducts:number;
-
-  @Input() viewForWorker: boolean;
-
-  @Output() bucketClicked = new EventEmitter();
-  @Output() logoClicked = new EventEmitter();
-  @Output() profileClicked = new EventEmitter();
-
-  profileView: boolean = false;
+  groupBtnStatus = false;
 
   constructor(
+    private routes: Router,
     private sharedService: SharedService
-  ){
-    this.sharedService.orderEmmited.subscribe(unused => {
-      this.amountOfProducts = 0;
-    })
+  ){}
+
+
+  onLogoPressed(){
+    this.routes.navigateByUrl("customer/main");
   }
 
-  onBucketClick(){
-    this.bucketClicked.emit(8);
-  }
+  onGroupMenyPressed(){
+    if(this.groupBtnStatus){
+      this.groupBtnStatus = false;
+      this.sharedService.emitGroupsShowing("-400");
+    }
+    else{
+      this.groupBtnStatus = true;
+      this.sharedService.emitGroupsShowing("0");
+    }
 
-  onProfileClicked(){
-    this.profileView = true;
-    this.profileClicked.emit(this.profileView);
-  }
-
-  onLogoClicked(){
-    this.profileView = false;
-    this.logoClicked.emit(this.profileView);
   }
 }
