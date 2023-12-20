@@ -10,7 +10,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^16.2.9",
+    "@angular/animations": "^16.2.12",
     "@angular/cdk": "^16.2.12npm",
     "@angular/cli": "^16.2.10",
     "@angular/common": "^16.2.0",
@@ -34,7 +34,10 @@
     "tailwind-scrollbar-hide": "^1.1.7",
     "tslib": "^2.3.0",
     "ws": "^8.15.1",
-    "zone.js": "~0.13.0"
+    "zone.js": "~0.13.0",
+    "engines": {
+      "node": "0.8.x"
+    }
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^16.2.10",

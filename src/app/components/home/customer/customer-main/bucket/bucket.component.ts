@@ -12,11 +12,24 @@ import { SharedService } from 'src/app/services/local/shared.service';
 })
 export class BucketComponent{
 
-
+  items: OrderItem[]=[];
+  allPrice = 0;
 
   constructor(
-    private sharedService: SharedService,
-    private customerService: CustomerService
-  ){}
+    private sharedService: SharedService
+  ){
+    sharedService.productAddedEvent.subscribe((data:Product)=>{
+      let found = this.items.find((element)=> element.product == data);
+      debugger;
+      if(found){
+        found.count++;
+        this.allPrice += found.product.price;
+      }
+      else{
+      this.allPrice += data.price;
+      this.items.push(new OrderItem(data));
+      }
+    })
+  }
 
 }

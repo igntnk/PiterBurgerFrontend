@@ -15,6 +15,9 @@ export class SharedService {
   private productSelected = new Subject<any>();
   productSelectedEvent = this.productSelected.asObservable();
 
+  private addItemToBucket = new Subject<any>;
+  productAddedEvent = this.addItemToBucket.asObservable();
+
   emitGroupChange(change: any) {
     this.selectGroup.next(change);
   }
@@ -25,5 +28,9 @@ export class SharedService {
 
   emitProductCard(change: any) {
     this.productSelected.next(change);
+  }
+
+  emitAddingItem(change:any){
+    this.addItemToBucket.next(change);
   }
 }

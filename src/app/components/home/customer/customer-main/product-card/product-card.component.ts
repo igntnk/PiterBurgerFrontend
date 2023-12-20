@@ -19,5 +19,8 @@ export class ProductCardComponent {
     })
   }
 
+  onAddButtonPressed(data:Product){
+    this.sharedService.emitAddingItem(data);
+  }
 
 }

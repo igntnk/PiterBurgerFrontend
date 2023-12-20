@@ -40,6 +40,7 @@ app-products{
 }
 
 app-product-card{
+  position: absolute;
   color: #583728;
   background-color: #FFE3CA;
   border-radius: 20px;
@@ -49,20 +50,24 @@ app-product-card{
   max-width: 500px;
   height: 50vh;
   min-height: 500px;
+  justify-content: center;
+  left:50%;
+  top: 50%;
+
+  display: var(--display);
 
   opacity: var(--cardOpacity);
-  transform: scale(var(--cardScale));
+  transform:translate(-50%, -50%) scale(var(--cardScale));
 
   transition:
     opacity 400ms,
     transform 400ms;
 }
 
-#uponProductCard{
-  width: 100vw;
+app-bucket{
   position: absolute;
-  display: var(--display);
-  justify-content: center;
-  align-items: center;
 }
 
+#uponBucket{
+  position: absolute;
+}
