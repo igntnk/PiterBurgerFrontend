@@ -10,27 +10,13 @@ import '@angular/compiler';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MatInputModule } from '@angular/material/input';
 import { Component, OnInit } from '@angular/core';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html'
 })
 
-export class LoginComponent implements OnInit {
-  credential!: Credential;
-  errorAuth!: boolean;
+export class LoginComponent {
 
-    constructor(private cookie: CookieService, private authService: AuthService) {}
-
-    ngOnInit(){
-        this.authService.clearLoginData();
-        this.credential = new Credential();
-        this.authService.logoutWithoutRedirect();
-    }
-
-    login(){
-      this.authService.authenticate(this.credential, () => {
-          this.errorAuth = true;
-      })
-    }
 }

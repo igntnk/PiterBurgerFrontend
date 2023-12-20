@@ -6,28 +6,24 @@ import { Subject } from 'rxjs/internal/Subject';
 })
 export class SharedService {
 
-  private emitChangeSource = new Subject<any>();
-  private applyPressed = new Subject<any>();
-  private nameChanged = new Subject<any>();
-  private orderSent = new Subject<any>();
-  changeEmitted = this.emitChangeSource.asObservable();
-  applyEmitted = this.applyPressed.asObservable();
-  nameEmmited = this.nameChanged.asObservable();
-  orderEmmited = this.orderSent.asObservable();
+  private selectGroup = new Subject<any>();
+  groupSelected = this.selectGroup.asObservable();
 
-  emitChange(change: any) {
-    this.emitChangeSource.next(change);
+  private openGroupMenu = new Subject<any>();
+  openGroupMenuPressed = this.openGroupMenu.asObservable();
+
+  private productSelected = new Subject<any>();
+  productSelectedEvent = this.productSelected.asObservable();
+
+  emitGroupChange(change: any) {
+    this.selectGroup.next(change);
   }
 
-  onApplyPressed(change: any){
-    this.applyPressed.next(change);
+  emitGroupsShowing(change: any) {
+    this.openGroupMenu.next(change);
   }
 
-  onNameChanged(change: any){
-    this.nameChanged.next(change);
-  }
-
-  onOrderSent(change: any){
-    this.orderSent.next(change);
+  emitProductCard(change: any) {
+    this.productSelected.next(change);
   }
 }

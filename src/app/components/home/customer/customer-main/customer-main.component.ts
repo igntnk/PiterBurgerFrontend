@@ -1,27 +1,42 @@
 import { SharedService } from './../../../../services/local/shared.service';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { OrderItem } from 'src/app/model/orderItem';
 import { Product } from 'src/app/model/product';
 
 @Component({
   selector: 'app-customer-main',
-  templateUrl: './customer-main.component.html'
+  templateUrl: './customer-main.component.html',
+  styleUrls:['./customer-main.component.css']
 })
-export class CustomerMainComponent {
+export class CustomerMainComponent implements OnInit{
 
-  @Output() addButtonClicked = new EventEmitter();
-
-  constructor(private sharedService: SharedService){}
-
-  products: Product[] = [];
-  items: OrderItem[]=[];
-
-  groupSelected(data: Product[]){
-    this.products = data;
+  constructor(
+    private sharedService: SharedService
+    ){
+      sharedService.openGroupMenuPressed.subscribe((data:string) => {
+        document.documentElement.style.setProperty('--margin',data+"px");
+      });
+      sharedService.productSelectedEvent.subscribe((data:string)=>{
+        document.documentElement.style.setProperty('--display',"flex");
+        document.getElementById("card")?.focus();
+        setTimeout(()=>{
+          document.documentElement.style.setProperty('--cardOpacity',"100%");
+          document.documentElement.style.setProperty('--cardScale',"100%");
+        })
+      })
   }
 
-  onAddProductPressed(data:Product){
-    this.sharedService.emitChange(data);
+  ngOnInit(): void {
+    document.documentElement.style.setProperty('--display',"none");
+    document.documentElement.style.setProperty('--margin',"-400px");
+    document.documentElement.style.setProperty('--cardOpacity',"0%");
+    document.documentElement.style.setProperty('--cardScale',"80%");
+  }
+
+  closeCard(){
+    setTimeout(()=>document.documentElement.style.setProperty('--display',"none"),200);
+    document.documentElement.style.setProperty('--cardOpacity',"0%");
+    document.documentElement.style.setProperty('--cardScale',"80%");
   }
 
 }

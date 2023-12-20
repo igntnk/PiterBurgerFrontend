@@ -8,19 +8,8 @@ import { Title } from '@angular/platform-browser';
   selector: 'app-worker',
   templateUrl: './worker.component.html'
 })
-export class WorkerComponent implements OnInit{
+export class WorkerComponent {
 
-  orders: Order[];
 
-  constructor(
-    private orderService: OrderService
-  ){
-  }
-
-  ngOnInit(): void {
-      this.orderService.getAvtiveOrders().subscribe(data => {
-        this.orders = data;
-      })
-  }
 
 }
