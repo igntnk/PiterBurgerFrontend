@@ -17,12 +17,14 @@ export class CustomerMainComponent implements OnInit{
         document.documentElement.style.setProperty('--margin',data+"px");
       });
       sharedService.productSelectedEvent.subscribe((data:string)=>{
-        document.documentElement.style.setProperty('--display',"flex");
-        document.getElementById("card")?.focus();
+        setTimeout(()=>{
+          document.documentElement.style.setProperty('--display',"flex");
+          document.getElementById("card")?.focus();
+        },200);
         setTimeout(()=>{
           document.documentElement.style.setProperty('--cardOpacity',"100%");
           document.documentElement.style.setProperty('--cardScale',"100%");
-        })
+        },210)
       })
   }
 

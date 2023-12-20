@@ -64,4 +64,10 @@ app-product-card{
     transform 400ms;
 }
 
+app-bucket{
+  position: absolute;
+}
 
+#uponBucket{
+  position: absolute;
+}

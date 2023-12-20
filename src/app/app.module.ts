@@ -32,12 +32,13 @@ import { ManagerComponent } from './components/home/manager/manager.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './components/header/header.component';
 import { SidebarComponent } from './components/home/customer/customer-main/sidebar/sidebar.component';
-import { BucketComponent } from './components/bucket/bucket.component';
+import { BucketComponent } from './components/home/customer/customer-main/bucket/bucket.component';
 import { CustomerMainComponent } from './components/home/customer/customer-main/customer-main.component';
 import { UserComponent } from './components/user/user.component';
 import { GroupsComponent } from './components/home/customer/customer-main/sidebar/groups/groups.component';
 import { ProductsComponent } from './components/home/customer/customer-main/products/products.component';
 import { ProductCardComponent } from './components/home/customer/customer-main/product-card/product-card.component';
+import { OrderProductComponent } from './components/home/customer/customer-main/bucket/order-product/order-product.component';
 
 
 
@@ -56,7 +57,8 @@ import { ProductCardComponent } from './components/home/customer/customer-main/p
     UserComponent,
     GroupsComponent,
     ProductsComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    OrderProductComponent
   ],
   imports: [
     BrowserModule,
