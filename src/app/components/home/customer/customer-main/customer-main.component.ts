@@ -17,15 +17,24 @@ export class CustomerMainComponent implements OnInit{
         document.documentElement.style.setProperty('--margin',data+"px");
       });
       sharedService.productSelectedEvent.subscribe((data:string)=>{
-        document.documentElement.style.setProperty('--cardOpacity',"100%");
-        document.documentElement.style.setProperty('--cardScale',"100%");
         document.documentElement.style.setProperty('--display',"flex");
+        document.getElementById("card")?.focus();
+        setTimeout(()=>{
+          document.documentElement.style.setProperty('--cardOpacity',"100%");
+          document.documentElement.style.setProperty('--cardScale',"100%");
+        })
       })
   }
 
   ngOnInit(): void {
-    document.documentElement.style.setProperty('--margin',"-400px");
     document.documentElement.style.setProperty('--display',"none");
+    document.documentElement.style.setProperty('--margin',"-400px");
+    document.documentElement.style.setProperty('--cardOpacity',"0%");
+    document.documentElement.style.setProperty('--cardScale',"80%");
+  }
+
+  closeCard(){
+    setTimeout(()=>document.documentElement.style.setProperty('--display',"none"),200);
     document.documentElement.style.setProperty('--cardOpacity',"0%");
     document.documentElement.style.setProperty('--cardScale',"80%");
   }
