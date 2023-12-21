@@ -19,9 +19,4 @@ export class AdminComponent {
   ){
   }
 
-  ngOnInit(): void {
-      this.orderService.getAvtiveOrders().subscribe(data => {
-        this.orders = data;
-      })
-  }
 }

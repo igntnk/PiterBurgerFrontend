@@ -1,0 +1,14 @@
+<div id="back">
+  <div id="ordersMain">
+    <div *ngFor="let order of orders" id="order">
+      <div class = "flex justify-center items-center">
+        <div>Заказ №{{order.id}}</div>
+        <div id="statusText" style="background-color: {{order.statusColor}};">{{order.status}}</div>
+      </div>
+      <div *ngFor = "let item of order.items; let i=index;">
+        <app-order-product [item]="item"></app-order-product>
+      </div>
+      <button (click)="changeOrderStatus(order)">{{order.nextStatus}}</button>
+    </div>
+  </div>
+</div>

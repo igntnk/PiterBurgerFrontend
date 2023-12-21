@@ -1,0 +1,83 @@
+<div class = "back">
+  <div class = "mainPanel">
+    <div
+    cdkDropList
+    #activeList="cdkDropList"
+    [cdkDropListData]="activeOrders"
+    [cdkDropListConnectedTo]="[cookingList,freezedList]"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)">
+      <div class="header">Активные</div>
+      <div *ngFor="let order of activeOrders;" cdkDrag>
+        <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+        <app-order [order]="order"></app-order>
+      </div>
+    </div>
+    <div
+    cdkDropList
+    #cookingList="cdkDropList"
+    [cdkDropListData]="cookingOrders"
+    [cdkDropListConnectedTo]="[cookedList,freezedList]"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)">
+      <div class="header">В готовке</div>
+      <div *ngFor="let order of cookingOrders;" cdkDrag>
+        <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+        <app-order [order]="order">
+        </app-order>
+      </div>
+    </div>
+    <div
+    cdkDropList
+    #cookedList="cdkDropList"
+    [cdkDropListData]="cookedOrders"
+    [cdkDropListConnectedTo]="[servingList,freezedList]"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)">
+      <div class="header">Ждут сборки</div>
+      <div *ngFor="let order of cookedOrders;" cdkDrag>
+        <app-order [order]="order">
+        </app-order>
+      </div>
+    </div>
+    <div
+    cdkDropList
+    #servingList="cdkDropList"
+    [cdkDropListData]="servingOrders"
+    [cdkDropListConnectedTo]="[servedList,freezedList]"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)">
+      <div class="header">Собираются</div>
+      <div *ngFor="let order of servingOrders;" cdkDrag>
+        <app-order [order]="order">
+        </app-order>
+      </div>
+    </div>
+    <div
+    cdkDropList
+    #servedList="cdkDropList"
+    [cdkDropListData]="servedOrders"
+    [cdkDropListConnectedTo]="[freezedList]"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)">
+      <div class="header">Готовы к выдаче</div>
+      <div *ngFor="let order of servedOrders;" cdkDrag>
+        <app-order [order]="order">
+        </app-order>
+      </div>
+    </div>
+    <div
+    cdkDropList
+    #freezedList="cdkDropList"
+    [cdkDropListData]="freezedOrders"
+    [cdkDropListConnectedTo]="[activeList]"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)">
+      <div class="header">Заморожены</div>
+      <div *ngFor="let order of freezedOrders;" cdkDrag>
+        <app-order [order]="order">
+        </app-order>
+      </div>
+    </div>
+  </div>
+</div>

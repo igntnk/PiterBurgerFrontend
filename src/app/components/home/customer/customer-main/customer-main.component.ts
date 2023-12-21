@@ -1,5 +1,5 @@
 import { SharedService } from './../../../../services/local/shared.service';
-import { Component, EventEmitter, Output, OnInit } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit, AfterViewInit } from '@angular/core';
 import { OrderItem } from 'src/app/model/orderItem';
 import { Product } from 'src/app/model/product';
 
@@ -8,7 +8,7 @@ import { Product } from 'src/app/model/product';
   templateUrl: './customer-main.component.html',
   styleUrls:['./customer-main.component.css']
 })
-export class CustomerMainComponent implements OnInit{
+export class CustomerMainComponent implements OnInit,AfterViewInit{
 
   constructor(
     private sharedService: SharedService
@@ -16,6 +16,7 @@ export class CustomerMainComponent implements OnInit{
       sharedService.openGroupMenuPressed.subscribe((data:string) => {
         document.documentElement.style.setProperty('--margin',data+"px");
       });
+
       sharedService.productSelectedEvent.subscribe((data:string)=>{
         setTimeout(()=>{
           document.documentElement.style.setProperty('--display',"flex");
@@ -25,12 +26,17 @@ export class CustomerMainComponent implements OnInit{
           document.documentElement.style.setProperty('--cardOpacity',"100%");
           document.documentElement.style.setProperty('--cardScale',"100%");
         },210)
+      });
+
+      sharedService.bucketPressEvent.subscribe((data:string)=>{
+        document.documentElement.style.setProperty('--bucketMargin',data+"px");
       })
   }
 
   ngOnInit(): void {
     document.documentElement.style.setProperty('--display',"none");
     document.documentElement.style.setProperty('--margin',"-400px");
+    document.documentElement.style.setProperty('--bucketMargin',"-400px");
     document.documentElement.style.setProperty('--cardOpacity',"0%");
     document.documentElement.style.setProperty('--cardScale',"80%");
   }
@@ -39,6 +45,10 @@ export class CustomerMainComponent implements OnInit{
     setTimeout(()=>document.documentElement.style.setProperty('--display',"none"),200);
     document.documentElement.style.setProperty('--cardOpacity',"0%");
     document.documentElement.style.setProperty('--cardScale',"80%");
+  }
+
+  ngAfterViewInit(): void {
+    this.sharedService.emitChangingView("customer");
   }
 
 }

@@ -1,0 +1,23 @@
+<div id="personPanel">
+  <div id="panelControll" class = "bg-[#554339] rounded-[15px]">
+    <div id = "headerText">
+      <div>Личный кабинет</div>
+    </div>
+    <input id="nameString" placeholder="{{name}}">
+    <div id = "buttons">
+      <button (click)="onApplyClicked()">Сменить имя</button>
+      <button (blur)="hideHistory()" (focus)="onHistoryClicked()" id="bigScalingBtn">
+        <div>Последние заказы</div>
+        <div *ngFor="let order of orders;">
+          <app-order *ngIf="showHistory" [order]="order"></app-order>
+        </div>
+      </button>
+      <button (blur)="hideActive()" (focus)="onActiveClicked()" id="bigScalingBtn">
+        <div>Активные заказы</div>
+        <div *ngFor="let order of orders;">
+          <app-order *ngIf="showActive" [order]="order"></app-order>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>

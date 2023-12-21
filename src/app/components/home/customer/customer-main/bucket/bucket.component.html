@@ -1,6 +1,29 @@
-<div class = "bg-[#FFE3CA]">
-  <div *ngFor="let item of items; let i = index;">
-    <app-order-product [item]="item"></app-order-product>
+<div class = "w-[300px]">
+  <div id="emptyText">
+    <div class = "flex items-center">
+      <div>Корзина</div>
+      <button id="hideBtn" (click)="onHideBtnPressed()">
+        <mat-icon>arrow_forward_ios</mat-icon>
+      </button>
+    </div>
+      <div *ngIf="items.length == 0">
+        <div class = "font-thin text-[15px] mt-[10px]">Добавьте любой продукт в корзину, чтобы покушать</div>
+      </div>
+  </div>
+  <div id="centralPanel">
+    <div *ngFor="let item of items; let i = index;">
+      <app-order-product [item]="item"></app-order-product>
+    </div>
+  </div>
+  <div *ngIf="items.length != 0" class = "flex flex-col items-center" id="bottomControll">
+    <div class = "font-bold text-[18px] text-[#554339] py-[5px]">Итого: {{allPrice}} руб</div>
+    <div id="commentInput">
+      <input [(ngModel)]="comment" placeholder="Пару ласковых">
+    </div>
+    <div class = "flex">
+      <button id="orderBtn" (click)="onSendOrderPressed()">Заказать</button>
+      <button id="deleteBtn" (click) = "onClearPressed()">Очистить</button>
+    </div>
   </div>
 </div>
 

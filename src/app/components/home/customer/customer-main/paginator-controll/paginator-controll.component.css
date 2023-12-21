@@ -1,0 +1,32 @@
+:root{
+  --paginatorOpacity: '---';
+}
+
+#info{
+  margin: 20px;
+}
+
+#paginator{
+  background-color: #554339;
+  width: fit-content;
+  border-radius: 15px;
+  color: #FFE3CA;
+  box-shadow: 0 0 10px #00000055;
+  height: 60px;
+
+  z-index: 2;
+
+  opacity: var(--paginatorOpacity);
+
+  transition:
+    transform 300ms,
+    opacity 600ms;
+}
+
+#paginator:hover{
+  transform: scale(110%);
+}
+
+#paginator:active{
+  transform: scale(105%);
+}

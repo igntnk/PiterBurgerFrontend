@@ -1,0 +1,15 @@
+<div id="paginator" class = "flex items-center">
+  <button (click)="onBackPressed()" id="info">
+    <mat-icon>arrow_back_ios_new</mat-icon>
+  </button>
+  <div class = "h-[50px] w-[1px] bg-[#ad8a77]"></div>
+  <div id="info" class = "px-[10px] flex flex-col items-center ">
+    <span *ngIf="pageInfo" class = "text-[25px] pb-[4px] font-black">{{pageInfo.page+1}}</span>
+    <div class = "h-[1px] w-[20px] bg-[#ad8a77]"></div>
+    <span *ngIf="pageInfo" class = "text-[14px]">{{totalPages}}</span>
+  </div>
+  <div class = "h-[50px] w-[1px] bg-[#ad8a77]"></div>
+  <button (click)="onForwardPressed()" id="info">
+    <mat-icon>arrow_forward_ios</mat-icon>
+  </button>
+</div>

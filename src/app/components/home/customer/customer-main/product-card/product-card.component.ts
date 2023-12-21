@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { eventListeners } from '@popperjs/core';
 import { Product } from 'src/app/model/product';
 import { SharedService } from 'src/app/services/local/shared.service';
 
@@ -7,7 +8,7 @@ import { SharedService } from 'src/app/services/local/shared.service';
   templateUrl: './product-card.component.html',
   styleUrls: ['./product-card.component.css']
 })
-export class ProductCardComponent {
+export class ProductCardComponent implements AfterViewInit{
 
   product: Product;
 
@@ -23,4 +24,10 @@ export class ProductCardComponent {
     this.sharedService.emitAddingItem(data);
   }
 
+  ngAfterViewInit(): void {
+    let button = document.getElementById("addBtn");
+    button?button.addEventListener("mousedown",function(event){
+      event.preventDefault();
+    }):null;
+  }
 }

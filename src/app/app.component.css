@@ -1,0 +1,16 @@
+app-header{
+  position: fixed;
+  z-index:4;
+  width: 100%;
+  top: 0;
+}
+
+app-notify-container{
+  position: absolute;
+  margin-bottom: 20px;
+  bottom: 0px;
+}
+
+html{
+  background-color: #FFE3CA;
+}

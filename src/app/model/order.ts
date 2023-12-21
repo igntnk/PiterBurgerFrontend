@@ -6,6 +6,8 @@ export class Order{
   creationDate: Date;
   status: string;
   items: OrderItem[];
+  statusColor: string;
+  nextStatus: string;
 
   constructor(comment: string, items: OrderItem[]){
     this.comment = comment;

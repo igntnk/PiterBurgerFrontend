@@ -1,6 +1,8 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { SessionStorageService } from 'angular-web-storage';
+import { Observable, catchError, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,31 +12,27 @@ export class OrderService {
   orderUrl = "api/order/";
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private sessionStorage: SessionStorageService,
+    private routes: Router
   ) { }
 
-  getAvtiveOrders():Observable<any>{
-    return this.http.get(this.orderUrl + "active").pipe();
+  getWorkerOrders():Observable<any>{
+    const headers = new HttpHeaders({"X-Requested-With": "XMLHttpRequest"});
+    return this.http.get(this.orderUrl + "worker",{headers}).pipe(
+      catchError(this.handleLoginError("worker",[]))
+    );
   }
 
-  setCookingStatus(id:number):Observable<any>{
-    return this.http.put(this.orderUrl + "cooking", id).pipe();
+  getManagerOrders():Observable<any>{
+    const headers = new HttpHeaders({"X-Requested-With": "XMLHttpRequest"});
+    return this.http.get(this.orderUrl + "manager",{headers}).pipe(
+      catchError(this.handleLoginError("worker",[]))
+    );
   }
 
-  setCookedStatus(id:number):Observable<any>{
-    return this.http.put(this.orderUrl + "cooked", id).pipe();
-  }
-
-  setServingStatus(id:number):Observable<any>{
-    return this.http.put(this.orderUrl + "serving", id).pipe();
-  }
-
-  setServedStatus(id:number):Observable<any>{
-    return this.http.put(this.orderUrl + "served", id).pipe();
-  }
-
-  setDoneStatus(id:number):Observable<any>{
-    return this.http.put(this.orderUrl + "done", id).pipe();
+  setNextStatus(id:number):Observable<any>{
+    return this.http.put(this.orderUrl + "next?id="+id,"").pipe();
   }
 
   setFreezedStatus(id:number):Observable<any>{
@@ -46,7 +44,18 @@ export class OrderService {
   }
 
   deleteOrder(id:number):Observable<any>{
-    const headers = new HttpHeaders().set("id", id.toString())
-    return this.http.delete(this.orderUrl + "delete", {headers}).pipe();
+    const params = new HttpParams()
+    .set("id",id.toString());
+    return this.http.delete(this.orderUrl + "delete", {params}).pipe();
+  }
+
+  private handleLoginError<T>(lastUrl = '/cutomer/main', result?: T) {
+    return (error: any): Observable<T> => {
+      if(error.status === 401) {
+        this.sessionStorage.set("lastUrl",lastUrl);
+        this.routes.navigateByUrl("/login");
+      }
+      return of(result as T);
+    };
   }
 }

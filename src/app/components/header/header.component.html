@@ -1,14 +1,14 @@
 <div id = "uponNavbar">
   <div id = "topnav">
-    <button (click)="onGroupMenyPressed()" id="groupBtn">
+    <button *ngIf="customerView" (click)="onGroupMenyPressed()" id="groupBtn">
       <mat-icon>fastfood</mat-icon>
     </button>
     <button (click)="onLogoPressed()" id = "logo">
        <div id = "piter">Piter</div>
       <div id = "burger">Burger</div>
     </button>
-    <button id="bucketBtn">
-      <mat-icon>shopping_basket</mat-icon>
+    <button *ngIf="customerView" (click)="onBucketPressed()" id="bucketBtn">
+      <mat-icon matBadge={{productsAmount}}>shopping_basket</mat-icon>
     </button>
   </div>
 </div>

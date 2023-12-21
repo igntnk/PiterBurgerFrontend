@@ -8,11 +8,6 @@
   align-items: center;
 }
 
-#uponNavBar{
-  height: fit-content;
-  width: fit-content;
-  position: fixed;
-}
 
 #logo{
   font-family: 'Dorsa';

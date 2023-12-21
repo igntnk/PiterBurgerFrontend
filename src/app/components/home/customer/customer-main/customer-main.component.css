@@ -1,14 +1,17 @@
 :root{
   --margin: '---';
+  --bucketMargin: '---';
   --display: '---';
   --cardOpacity: '---';
   --cardScale: '---';
 }
 
 app-sidebar{
-  display: flex;
-  align-items: center;
-  z-index: 1;
+  position: absolute;
+  top:50%;
+  transform:
+    translateY(-40%);
+  z-index: 3;
 
   transition:
     margin-left 1s;
@@ -18,9 +21,15 @@ app-sidebar{
   app-sidebar{
     margin-left: var(--margin);
   }
+
+  app-bucket{
+    margin-right: var(--bucketMargin);
+  }
+
 }
 
 app-products{
+  margin-top:20px;
   color: #794b37;
   max-width: 1000px;
   display: flex;
@@ -35,7 +44,6 @@ app-products{
 
 #main{
   flex: 1 1 100%;
-
   overflow: scroll;
 }
 
@@ -46,10 +54,10 @@ app-product-card{
   border-radius: 20px;
   box-shadow: 0 0 35px rgba(0,0,0,0.3);
   width: 50%;
-  min-width: 350px;
+  min-width: 300px;
   max-width: 500px;
-  height: 50vh;
-  min-height: 500px;
+  height: 40vh;
+  min-height: 400px;
   justify-content: center;
   left:50%;
   top: 50%;
@@ -64,10 +72,23 @@ app-product-card{
     transform 400ms;
 }
 
-app-bucket{
-  position: absolute;
+#uponBucket{
+  flex: 1 1 auto;
+  display: flex;
 }
 
-#uponBucket{
-  position: absolute;
+app-bucket{
+  position: fixed;
+  background-color: #FFE3CA;
+  display: flex;
+  width: 300px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  right: 20px;
+  top:50%;
+  transform:
+    translateY(-50%);
+
+    transition:
+      margin-right 1s;
 }

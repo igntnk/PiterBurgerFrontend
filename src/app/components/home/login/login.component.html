@@ -1,1 +1,15 @@
+<div id="loginPanel">
+  <div class = "font-black text-[50px] font-['Lora'] mt-[10px]">Вход в кабинет</div>
+  <div id="inputsPanel" >
+    <div id="loginInput">
+      <input matInput type="text" placeholder="Username" [(ngModel)]="credential.email" required>
+    </div>
 
+    <div id="loginInput">
+      <input matInput type="password" placeholder="Password" [(ngModel)]="credential.password" required>
+    </div>
+    <button (click)="login()">Войти</button>
+    <div *ngIf="errorAuth" class = "absolute bottom-[50px]">Неправильный логин или пароль</div>
+  </div>
+
+</div>

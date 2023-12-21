@@ -101,7 +101,9 @@ export class AuthService {
     if(response.authenticated == true) {
         this.updateAuth(response);
         this.loggedIn.next(true);
-        if(this.isAdmin())
+        if(this.sessionStorage.get("lastUrl"))
+          this.router.navigateByUrl(this.sessionStorage.get("lastUrl"));
+        else if(this.isAdmin())
           this.router.navigate(['admin']);
         else if(this.isManager())
           this.router.navigate(['manager']);
@@ -150,7 +152,6 @@ export class AuthService {
 
   private handleLoginError<T>(operation = 'operation', result?: T) {
     console.log('handleLoginError');
-debugger
     return (error: any): Observable<T> => {
       if(error.status === 401) {
         this.loggedIn.next(false);
