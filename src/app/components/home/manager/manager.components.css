@@ -7,76 +7,48 @@
 .mainPanel{
   margin-top: 20px;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 .header{
+  position: fixed;
+  background-color: #554339;
+  padding: 10px;
+  border-radius: 5px;
   font-family: 'Lora';
   font-weight: 900;
   color: #FFE3CA;
   text-align: center;
   font-size: 25px;
   margin-top: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  box-shadow: 0 0 10px #00000055;
+  width: 10%;
 }
 
-.cdk-drag-preview {
-  box-sizing: border-box;
-  border-radius: 4px;
-  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
-              0 8px 10px 1px rgba(0, 0, 0, 0.14),
-              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+.container{
+  box-shadow: 0 0 10px #00000055;
+  min-height: 200px;
+  height: auto;
+  max-height: 700px;
+  overflow: auto;
+  padding-top: 10px;
+  border-radius: 5px;
+
+  transition:
+    scale 300ms,
+    height 300ms,
+    background 600ms;
 }
 
-.cdk-drag-placeholder {
-  opacity: 0;
+.container::-webkit-scrollbar{
+  display: none;
 }
 
-.cdk-drag-animating {
-  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
-}
+.animated{
+  transition:
+    left 400ms,
+    top 400ms;
 
-.example-box:last-child {
-  border: none;
-}
-
-.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
-  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
-}
-
-.example-container {
-  width: 400px;
-  max-width: 100%;
-  margin: 0 25px 25px 0;
-  display: inline-block;
-  vertical-align: top;
-}
-
-.example-list {
-  min-height: 60px;
-  background: #554339;
-  border-radius: 4px;
-  overflow: hidden;
-  display: block;
-  width: 200px;
-}
-
-.example-box {
-  padding: 20px 10px;
-  border-bottom: solid 1px #ccc;
-  color: rgba(0, 0, 0, 0.87);
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  box-sizing: border-box;
-  cursor: move;
-  background: white;
-  font-size: 14px;
-}
-
-.example-custom-placeholder {
-  background: #ccc;
-  border: dotted 3px #999;
-  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+    transition-timing-function: cubic-bezier(0.17, 0.03, 0, 1.01);
 }

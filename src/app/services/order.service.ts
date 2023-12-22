@@ -27,7 +27,7 @@ export class OrderService {
   getManagerOrders():Observable<any>{
     const headers = new HttpHeaders({"X-Requested-With": "XMLHttpRequest"});
     return this.http.get(this.orderUrl + "manager",{headers}).pipe(
-      catchError(this.handleLoginError("worker",[]))
+      catchError(this.handleLoginError("manager",[]))
     );
   }
 
