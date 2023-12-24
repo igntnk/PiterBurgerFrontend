@@ -1,0 +1,50 @@
+#order{
+  display: flex;
+  flex-direction: column;
+  padding:10px;
+  margin: 10px;
+  height: fit-content;
+  background-color: #FFE3CA;
+  border-radius: 5px;
+  border-top: 4px solid;
+  border-color: #554339;
+  box-shadow: 0 0 10px #00000055;
+}
+
+#statusText{
+  padding: 10px;
+  color:#FFE3CA;
+  border-radius: 5px;
+  margin-left:15px;
+}
+
+#ordersMain{
+  padding-top: 120px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+#back{
+  height: 100vh;
+  background-color: #554339;
+  overflow: auto;
+}
+
+#back::-webkit-scrollbar{
+  display: none;
+}
+
+button{
+  background-color: #554339;
+  color: #FFE3CA;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+@media screen and (max-width: 900px) {
+  #order{
+    width: 160px;
+  }
+
+}

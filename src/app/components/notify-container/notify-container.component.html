@@ -1,0 +1,13 @@
+<div *ngIf="notifies.size != 0" id="notifyContainer">
+  <div *ngFor="let notify of notifies| keyvalue; let i = index;">
+    <div style="background-color: {{notify.key.color}}; transform: translateX({{notify.key.translate}}); opacity: {{notify.key.opacity}};" id="notify">
+      <div class = "flex flex-col">
+        <div id="header1">{{notify.key.header}}</div>
+        <div id="header2">{{notify.key.message}}</div>
+      </div>
+      <button (click)="onCloseClicked(notify)" class = "flex">
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

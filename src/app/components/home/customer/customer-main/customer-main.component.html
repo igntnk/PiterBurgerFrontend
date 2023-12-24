@@ -1,15 +1,13 @@
-<div class = "flex bg-[#e8c6a9] h-[calc(100vh-100px)] font-['Lora']">
-  <div class = "h-[calc(100vh-100px)] flex absolute">
-    <app-sidebar id="menu"></app-sidebar>
-  </div>
+<div class = "flex bg-[#e8c6a9] h-[calc(100vh-100px)] font-['Lora'] flex mt-[100px]">
+  <app-sidebar id="menu"></app-sidebar>
   <div id = "main">
     <div class="flex justify-center">
-      <app-products></app-products>
+      <app-products class = "pb-[180px]"></app-products>
     </div>
   </div>
-  <div id="uponProductCard" class = "w-[100vw] h-[calc(100vh-100px)]">
+  <app-bucket></app-bucket>
+  <button (blur)="closeCard()" id="card">
     <app-product-card></app-product-card>
-  </div>
-
+  </button>
 </div>
 

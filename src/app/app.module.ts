@@ -19,6 +19,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { RouterLink } from '@angular/router';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { NotifierModule } from 'angular-notifier';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { CdkDropList, CdkDrag, moveItemInArray} from '@angular/cdk/drag-drop';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,14 +34,18 @@ import { ManagerComponent } from './components/home/manager/manager.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './components/header/header.component';
 import { SidebarComponent } from './components/home/customer/customer-main/sidebar/sidebar.component';
-import { BucketComponent } from './components/bucket/bucket.component';
+import { BucketComponent } from './components/home/customer/customer-main/bucket/bucket.component';
 import { CustomerMainComponent } from './components/home/customer/customer-main/customer-main.component';
-import { UserComponent } from './components/user/user.component';
 import { GroupsComponent } from './components/home/customer/customer-main/sidebar/groups/groups.component';
 import { ProductsComponent } from './components/home/customer/customer-main/products/products.component';
 import { ProductCardComponent } from './components/home/customer/customer-main/product-card/product-card.component';
-
-
+import { OrderProductComponent } from './components/home/customer/customer-main/bucket/order-product/order-product.component';
+import { PaginatorControllComponent } from './components/home/customer/customer-main/paginator-controll/paginator-controll.component';
+import { CustomerPersonComponent } from './components/home/customer/customer-person/customer-person.component';
+import { NotifyContainerComponent } from './components/notify-container/notify-container.component';
+import { OrderComponent } from './components/home/order/order.component';
+import { WebSocketService} from './services/web-socket.service';
+import { WebSocketConfig } from './auth/config/web-scoket-config';
 
 @NgModule({
   declarations: [
@@ -53,10 +59,14 @@ import { ProductCardComponent } from './components/home/customer/customer-main/p
     SidebarComponent,
     BucketComponent,
     CustomerMainComponent,
-    UserComponent,
     GroupsComponent,
     ProductsComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    OrderProductComponent,
+    PaginatorControllComponent,
+    CustomerPersonComponent,
+    OrderComponent,
+    NotifyContainerComponent
   ],
   imports: [
     BrowserModule,
@@ -80,9 +90,22 @@ import { ProductCardComponent } from './components/home/customer/customer-main/p
     RouterLink,
     MatSidenavModule,
     NotifierModule,
+    DragDropModule,
+    CdkDrag,
+    CdkDropList,
     NgbModule
   ],
-  providers: [SessionStorageService,CookieService],
+  providers: [
+    SessionStorageService,
+    {
+      provide : WebSocketService,
+      useFactory: ()=>{
+          const service = new WebSocketService();
+          service.configure(WebSocketConfig);
+          service.activate();
+          return service;
+      }
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

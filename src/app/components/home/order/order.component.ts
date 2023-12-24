@@ -1,13 +1,24 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Order } from 'src/app/model/order';
-import { OrderItem } from 'src/app/model/orderItem';
-import { Product } from 'src/app/model/product';
-import { OrderService } from 'src/app/services/order.service';
+import { CustomerService } from 'src/app/services/customer-service.service';
 
 @Component({
   selector: 'app-order',
-  templateUrl: './order.component.html'
+  templateUrl: './order.component.html',
+  styleUrls: ["./order.component.css"]
 })
-export class OrderComponent  {
+export class OrderComponent implements AfterViewInit{
+
+  @Input() order: Order;
+
+  constructor(
+    private customerService: CustomerService
+  ){}
+
+  ngAfterViewInit(): void {
+
+  }
+
 
 }

@@ -7,6 +7,7 @@ import { CustomerComponent } from './components/home/customer/customer.component
 import { ManagerComponent } from './components/home/manager/manager.component';
 import { WorkerComponent } from './components/home/worker/worker.component';
 import { CustomerMainComponent } from './components/home/customer/customer-main/customer-main.component';
+import { CustomerPersonComponent } from './components/home/customer/customer-person/customer-person.component';
 
 const routes: Routes = [{
   path:'',
@@ -44,6 +45,12 @@ const routes: Routes = [{
       {
         path: 'main',
         component: CustomerMainComponent
+      },
+      {
+        path: 'person',
+        component: CustomerPersonComponent,
+        canActivate:[AuthGuard],
+        title:"Личный кабинет"
       }
     ]
   },

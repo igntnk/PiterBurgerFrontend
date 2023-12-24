@@ -1,5 +1,8 @@
-<div *ngIf="product" id="productCard">
-  <div id="upperCardPart" class = "flex items-center">
+<div id="productCard">
+  <div *ngIf="product" id="upperCardPart" class = "flex items-center">
+    <button class = "absolute right-[20px] top-[7px]">
+      <mat-icon>close</mat-icon>
+    </button>
     <img src={{product.photo}}>
     <div>
       <div id="name" class = "font-black text-[28px] ">{{product.name}}</div>
@@ -7,8 +10,8 @@
     </div>
   </div>
   <div class = "font-black text-[30px] mb-[15px]">Описание:</div>
-  <div id="description">
+  <div *ngIf="product" id="description">
     <div class = "text-[20px]">{{product.description}}</div>
   </div>
-  <button>Добавить</button>
+  <button (click)="onAddButtonPressed(product)" id="addBtn">Добавить</button>
 </div>

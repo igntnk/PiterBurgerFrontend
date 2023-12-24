@@ -1,0 +1,18 @@
+.ordersMain{
+  padding:10px;
+  margin-bottom: 10px;
+  background-color: #FFE3CA;
+  border-radius: 5px;
+  border-top: 4px solid;
+  border-color: #554339;
+  box-shadow: 0 0 10px #00000055;
+}
+
+.statusText{
+  padding: 10px;
+  color:#FFE3CA;
+  border-radius: 5px;
+  margin-left:15px;
+}
+
+
