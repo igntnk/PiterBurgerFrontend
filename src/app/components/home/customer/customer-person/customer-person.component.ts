@@ -1,15 +1,17 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Subscribable, Subscriber, Subscription } from 'rxjs';
 import { Notify } from 'src/app/model/notify';
 import { Order } from 'src/app/model/order';
 import { CustomerService } from 'src/app/services/customer-service.service';
 import { SharedService } from 'src/app/services/local/shared.service';
+import { OrderService } from 'src/app/services/order.service';
 
 @Component({
   selector: 'app-customer-person',
   templateUrl: './customer-person.component.html',
   styleUrls: ['./customer-person.component.css']
 })
-export class CustomerPersonComponent implements AfterViewInit {
+export class CustomerPersonComponent implements AfterViewInit,OnInit {
 
   name: string;
   orders: Order[] =[];
@@ -17,11 +19,14 @@ export class CustomerPersonComponent implements AfterViewInit {
   showActive= false;
   showHistory= false;
 
+  topicSubscription: Subscription;
+
   constructor(
     private customerService: CustomerService,
+    private orderService: OrderService,
     private sharedService: SharedService
   ){
-    customerService.getMyName().subscribe(data=> this.name = data.message);
+    customerService.getMyName().subscribe(data=> this.name = data.name);
   }
 
   onApplyClicked(){
@@ -41,64 +46,46 @@ export class CustomerPersonComponent implements AfterViewInit {
     this.sharedService.emitChangingView("hideAll");
   }
 
-  onHistoryClicked(){
-    this.customerService.getHistory().subscribe(data => {
-      this.mapOrders(data);
-      this.orders = data;
-      this.showHistory = true;
+  ngOnInit(): void {
+    this.topicSubscription = this.customerService.subscribeToCustomerOrders().subscribe(data=>{
+      let order = (JSON.parse(data.body));
+      this.orderService.mapOrders([order]);
+      let index = this.orders.findIndex((element)=> element.id == order.id);
+      this.orders[index] = order;
     })
   }
 
-  mapOrders(orders: Order[]){
-    for(let order of orders){
-      switch(order.status){
-        case 'ACTIVE':
-          order.status = "Поступил";
-          order.statusColor = "#403955";
-          order.nextStatus = "Начать готовить";
-          break;
-        case 'COOKING':
-          order.status = "В готовке";
-          order.statusColor = "#5e5043";
-          order.nextStatus = "Закончить готовку";
-          break;
-        case 'COOKED':
-          order.status = "Ждет сборки";
-          order.statusColor = "#435e57";
-          order.nextStatus = "Собрать";
-          break;
-        case 'SERVING':
-          order.status = "В сборке";
-          order.statusColor = "#5c8261";
-          order.nextStatus = "Закончить сборку";
-          break;
-        case 'SERVED':
-          order.status = "Готов к выдаче";
-          order.statusColor = "#76ab6f";
-          order.nextStatus = "Выдать";
-          break;
-        case 'FREEZE':
-          order.status = "Заморожен";
-          order.statusColor = "#78b0bf";
-          order.nextStatus = "Разморозить";
-          break;
-      }
-    }
+  onHistoryClicked(){
+    this.customerService.getHistory().subscribe(data => {
+      this.orders = this.orderService.mapOrders(data);
+      this.showHistory = true;
+      let text = document.getElementById("historyTag") as HTMLElement;
+      text.style.marginBottom = "10px";
+    })
   }
 
   onActiveClicked(){
     this.customerService.getActive().subscribe(data => {
-      this.mapOrders(data);
-      this.orders = data;
+      this.orders = this.orderService.mapOrders(data);
       this.showActive = true;
+      let text = document.getElementById("activeTag") as HTMLElement;
+      text.style.marginBottom = "10px";
     })
   }
 
   hideHistory(){
-    setTimeout(()=>this.showHistory = false,300);
+    setTimeout(()=>{
+      this.showHistory = false;
+      let text = document.getElementById("historyTag") as HTMLElement;
+      text.style.marginBottom = "0p";
+    },300);
   }
 
   hideActive(){
-    setTimeout(()=>this.showActive = false,300);
+    setTimeout(()=>{
+      this.showActive = false;
+      let text = document.getElementById("activeTag") as HTMLElement;
+      text.style.marginBottom = "0";
+    },300);
   }
 }

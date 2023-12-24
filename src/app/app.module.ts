@@ -44,7 +44,8 @@ import { PaginatorControllComponent } from './components/home/customer/customer-
 import { CustomerPersonComponent } from './components/home/customer/customer-person/customer-person.component';
 import { NotifyContainerComponent } from './components/notify-container/notify-container.component';
 import { OrderComponent } from './components/home/order/order.component';
-
+import { WebSocketService} from './services/web-socket.service';
+import { WebSocketConfig } from './auth/config/web-scoket-config';
 
 @NgModule({
   declarations: [
@@ -94,7 +95,17 @@ import { OrderComponent } from './components/home/order/order.component';
     CdkDropList,
     NgbModule
   ],
-  providers: [SessionStorageService,CookieService],
+  providers: [
+    SessionStorageService,
+    {
+      provide : WebSocketService,
+      useFactory: ()=>{
+          const service = new WebSocketService();
+          service.configure(WebSocketConfig);
+          service.activate();
+          return service;
+      }
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

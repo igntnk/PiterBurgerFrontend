@@ -7,7 +7,7 @@
 .mainPanel{
   margin-top: 20px;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
 .header{
@@ -31,13 +31,16 @@
   min-height: 200px;
   height: auto;
   max-height: 700px;
+  min-width: 300px;
   overflow: auto;
   padding-top: 10px;
   border-radius: 5px;
 
   transition:
     scale 300ms,
-    height 300ms,
+    height 800ms,
+    min-height 300ms,
+    max-height 300ms,
     background 600ms;
 }
 
@@ -47,8 +50,12 @@
 
 .animated{
   transition:
-    left 400ms,
-    top 400ms;
+    left 800ms,
+    top 800ms;
 
     transition-timing-function: cubic-bezier(0.17, 0.03, 0, 1.01);
+}
+
+.dragging{
+  opacity: 1%;
 }

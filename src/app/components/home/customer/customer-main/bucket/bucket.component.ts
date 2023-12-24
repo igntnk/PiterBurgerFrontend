@@ -36,6 +36,7 @@ export class BucketComponent{
     sharedService.deleteItemEvent.subscribe((data:OrderItem)=>{
       this.items.splice(this.items.findIndex((element)=> element == data),1);
     })
+
   }
 
   onHideBtnPressed(){
@@ -48,10 +49,10 @@ export class BucketComponent{
   }
 
   onSendOrderPressed(){
-    this.customerService.sendOrder(new Order(this.comment,this.items)).subscribe(()=>{
-      this.items = [];
-      this.sharedService.emitAddingNotify(new Notify("Успешно", "Заказ успешно отправлен","#554339"));
-      this.sharedService.emitClearingBucket("");
-    });
+    this.customerService.messageToSendOrder(new Order(this.comment,this.items));
+    this.items = [];
+    this.allPrice = 0;
+    this.sharedService.emitClearingBucket("");
+    this.sharedService.emitAddingNotify(new Notify("Успешно","Ваш заказ отправлен! Спасибо за покупку=)))","#554339"));
   }
 }

@@ -7,13 +7,13 @@
     <div id = "buttons">
       <button (click)="onApplyClicked()">Сменить имя</button>
       <button (blur)="hideHistory()" (focus)="onHistoryClicked()" id="bigScalingBtn">
-        <div>Последние заказы</div>
+        <div id = "historyTag">Последние заказы</div>
         <div *ngFor="let order of orders;">
           <app-order *ngIf="showHistory" [order]="order"></app-order>
         </div>
       </button>
       <button (blur)="hideActive()" (focus)="onActiveClicked()" id="bigScalingBtn">
-        <div>Активные заказы</div>
+        <div id = "activeTag">Активные заказы</div>
         <div *ngFor="let order of orders;">
           <app-order *ngIf="showActive" [order]="order"></app-order>
         </div>

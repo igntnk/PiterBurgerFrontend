@@ -7,6 +7,8 @@ import { Group } from '../model/group';
 import { Observable, catchError, of, tap } from 'rxjs';
 import { Order } from '../model/order';
 import { Router } from '@angular/router';
+import { WebSocketService } from './web-socket.service';
+import { CreateOrderMessage } from '../messages/create-new-message';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +23,7 @@ export class CustomerService {
     private http: HttpClient,
     private authService: AuthService,
     private sessionStorage: SessionStorageService,
+    private ws: WebSocketService,
     private routes: Router
     ) {
    }
@@ -43,6 +46,21 @@ export class CustomerService {
       catchError(this.handleLoginError("/customer/person",[]))
       );
    }
+
+   subscribeToCustomerOrders():Observable<any>{
+    return this.ws.watch("/order/worker").pipe();
+  }
+
+  messageToSendOrder(order: Order){
+    if (!this.authService.LoggedUser.email){
+      this.routes.navigateByUrl("/login");
+      return;
+    }
+    else{
+      let message = new CreateOrderMessage(this.authService.LoggedUser.email,order);
+      return this.ws.publish({destination:"/create",body:JSON.stringify(message)});
+    }
+  }
 
    setMyName(name: string):Observable<any>{
     return this.http.post(this.customerUrl + "name",name).pipe();

@@ -72,6 +72,7 @@ button:active{
 
 #panelControll{
   width: 50%;
+  max-width: 400px;
   min-width: 350px;
 }
 
@@ -99,4 +100,8 @@ button:active{
 
 app-order{
   margin-top: 30px;
+}
+
+#activeTag,#historyTag{
+  transition: all 300ms;
 }

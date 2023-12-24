@@ -1,20 +1,17 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { WebSocketService } from './../../../services/web-socket.service';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { Message } from '@stomp/stompjs';
+import { Subscription, map, share } from 'rxjs';
 import { Order } from 'src/app/model/order';
+import { SharedService } from 'src/app/services/local/shared.service';
 import { OrderService } from 'src/app/services/order.service';
-import {
-  CdkDragDrop,
-  moveItemInArray,
-  transferArrayItem,
-  CdkDrag,
-  CdkDropList,
-} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-manager',
   templateUrl: './manager.component.html',
   styleUrls:['./manager.components.css']
 })
-export class ManagerComponent implements AfterViewInit{
+export class ManagerComponent implements AfterViewInit,OnInit,OnDestroy{
 
   activeOrders: Order[]=[];
   cookingOrders: Order[]=[];
@@ -23,72 +20,66 @@ export class ManagerComponent implements AfterViewInit{
   servedOrders: Order[]=[];
   freezedOrders: Order[]=[];
 
+  private topicSubscription: Subscription;
+
   constructor(
-    private orderService: OrderService
+    private orderService: OrderService,
+    private sharedService: SharedService
   ){
     orderService.getManagerOrders().subscribe(data=>{
-      this.mapOrders(data);
+      this.maptToDrag(this.orderService.mapOrders(data));
     })
+
   }
 
-  mapOrders(orders: Order[]){
+  maptToDrag(orders: Order[]){
     for(let order of orders){
       switch(order.status){
-        case 'ACTIVE':
-          order.status = "Поступил";
-          order.statusColor = "#403955";
+        case 'Поступил':
           order.nextStatus = "Начать готовить";
           this.activeOrders.push(order);
+          this.setDraggable(order,"active"+this.activeOrders.indexOf(order),this.orderService);
           break;
-        case 'COOKING':
-          order.status = "В готовке";
-          order.statusColor = "#5e5043";
-          order.nextStatus = "Закончить готовку";
+        case 'В готовке':
           this.cookingOrders.push(order);
+          this.setDraggable(order,"cooking"+this.cookingOrders.indexOf(order),this.orderService);
           break;
-        case 'COOKED':
-          order.status = "Ждет сборки";
-          order.statusColor = "#435e57";
-          order.nextStatus = "Собрать";
+        case 'Ждет сборки':
           this.cookedOrders.push(order);
+          this.setDraggable(order,"cooked"+this.cookedOrders.indexOf(order),this.orderService);
           break;
-        case 'SERVING':
-          order.status = "В сборке";
-          order.statusColor = "#5c8261";
-          order.nextStatus = "Закончить сборку";
+        case 'В сборке':
           this.servingOrders.push(order);
+          this.setDraggable(order,"serving"+this.servingOrders.indexOf(order),this.orderService);
           break;
-        case 'SERVED':
-          order.status = "Готов";
-          order.statusColor = "#76ab6f";
-          order.nextStatus = "Выдать";
+        case 'Готов к выдаче':
           this.servedOrders.push(order);
+          this.setDraggable(order,"served"+this.servedOrders.indexOf(order),this.orderService);
           break;
-        case 'FREEZE':
-          order.status = "Заморожен";
-          order.statusColor = "#78b0bf";
-          order.nextStatus = "Разморозить";
+        case 'Заморожен':
           this.freezedOrders.push(order);
+          this.setDraggable(order,"freeze"+this.freezedOrders.indexOf(order),this.orderService);
           break;
       }
     }
   }
 
-  setDraggable(data:Order[],name:string): void {
-    let index = 0;
-    for(let order of data){
-      let panel = document.getElementById(name+index) as HTMLElement;
+  setDraggable(data:Order,name:string,orderService: OrderService): void {
+    setTimeout(()=>{
+      let panel = document.getElementById(name) as HTMLElement;
+      let freezed = document.getElementById("freezedId");
+      let active = document.getElementById("activeId");
       panel.onmousedown = function(event){
+
         let panelParent = panel.parentElement as HTMLElement;
 
         let panelClone = panel.cloneNode(true) as HTMLElement;
-        panelClone.style.width="180px";
+        panelClone.style.width="280px";
         panel.style.opacity = "0%";
 
         panelClone.style.position = 'absolute';
         panelClone.style.zIndex = '100';
         document.body.append(panelClone);
-
 
         let shiftX = event.clientX - panel.getBoundingClientRect().left;
         let shiftY = event.clientY - panel.getBoundingClientRect().top;
@@ -99,11 +90,6 @@ export class ManagerComponent implements AfterViewInit{
         function moveAt(pageX: number, pageY: number) {
           panelClone.style.left = pageX - shiftX + 'px';
           panelClone.style.top = pageY - shiftY + 'px';
-        }
-
-        function copyPos(shiftX: number, shiftY: number) {
-          panelClone.style.left =  shiftX + 'px';
-          panelClone.style.top = shiftY + 'px';
         }
 
         let currentDroppable:HTMLElement;
@@ -117,8 +103,7 @@ export class ManagerComponent implements AfterViewInit{
           panelClone.hidden = false
 
           if (!elemBelow) return;
-
-          let droppableBelow = elemBelow.closest('.container') as HTMLElement;
+          let droppableBelow = elemBelow.closest('.'+name.slice(0,-1)) as HTMLElement;
 
           if (currentDroppable != droppableBelow) {
             if (currentDroppable) {
@@ -137,20 +122,26 @@ export class ManagerComponent implements AfterViewInit{
         }
 
         function enterDroppable(elem:HTMLElement){
-          elem.style.scale = "105%";
           elem.style.background='#FFE3CA';
         }
 
         document.addEventListener('mousemove', onMouseMove);
 
         panelClone.onmouseup = function() {
-          if (currentDroppable != panelParent) {
-            panel.style.position='';
+          if (currentDroppable != panelParent && currentDroppable) {
+            if(currentDroppable == freezed){
+              orderService.messageToFreeze(data.id);
+            }
+            else if(currentDroppable == active){
+              orderService.messageToActive(data.id);
+            }
+            else{
+              orderService.messageToNext(data.id);
+            }
             currentDroppable.style.height = currentDroppable.scrollHeight + 'px';
             panelParent.style.height = panelParent.scrollHeight + 'px';
-            debugger;
             if(currentDroppable.scrollHeight < 700){
-              if(currentDroppable.scrollHeight < panel.scrollHeight){
+              if(currentDroppable.scrollHeight == 200){
                 currentDroppable.style.height = panel.scrollHeight + 20 + 'px';
               }
               else{
@@ -159,10 +150,21 @@ export class ManagerComponent implements AfterViewInit{
               }
             }
 
-            if(panelParent.scrollHeight > 200){
-              panelParent.style.height = panelParent.scrollHeight -
-            panel.scrollHeight + 'px';
+
+            if(panelParent.scrollHeight > 200 && panelParent.scrollHeight<700){
+              if(panelParent.scrollHeight - panel.scrollHeight < 200){
+                panelParent.style.height = "200px";
+              }
+              else{
+                panelParent.style.height = panelParent.scrollHeight -
+              panel.scrollHeight + 'px';
+              }
             }
+            else{
+              panelParent.style.height = panelParent.scrollHeight -
+              panel.scrollHeight + 'px';
+            }
+
             currentDroppable.append(panel);
             currentDroppable.style.scale = "100%";
             currentDroppable.style.background = "";
@@ -170,33 +172,40 @@ export class ManagerComponent implements AfterViewInit{
             panelClone.style.top = panel.getBoundingClientRect().top.toString()+'px';
             setTimeout(()=>{
               panelClone.remove();
-              panel.style.opacity = "100%";
-            },400);
+              panel.remove();
+            },800);
           }
           else{
             panelClone.style.left = panel.getBoundingClientRect().left.toString() +'px';
             panelClone.style.top = panel.getBoundingClientRect().top.toString()+'px';
-            setTimeout(()=>{
-              panelClone.remove();
-              panel.style.opacity = "100%";
-            },400);
           }
+          setTimeout(()=>{
+            panelClone.remove();
+            panel.style.opacity = "100%";
+          },800);
+
+
           document.removeEventListener('mousemove', onMouseMove);
-          panel.onmouseup = null;
+          currentDroppable.style.background = '';
         };
-      }
-      index++;
-    }
-  }
-  ngAfterViewInit(): void {
-    setTimeout(()=>{
-      this.setDraggable(this.activeOrders,"active");
-      this.setDraggable(this.cookingOrders,"cooking");
-      this.setDraggable(this.cookedOrders,"cooked");
-      this.setDraggable(this.servingOrders,"serving");
-      this.setDraggable(this.servedOrders,"served");
-      this.setDraggable(this.freezedOrders,"freezed");
+
+      };
     },100);
   }
+  ngAfterViewInit(): void {
+
+  }
+
+  ngOnInit(): void {
+    this.topicSubscription = this.orderService.subscribeToManagerOrders().subscribe(data=>{
+      let order = (JSON.parse(data.body)) as Order;
+      setTimeout(()=>this.maptToDrag(this.orderService.mapOrders([order])),500);
+    })
+  }
+
+  ngOnDestroy() {
+
+  }
+
 
 }

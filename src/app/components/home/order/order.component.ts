@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Order } from 'src/app/model/order';
 import { CustomerService } from 'src/app/services/customer-service.service';
 

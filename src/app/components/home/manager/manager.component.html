@@ -1,55 +1,50 @@
 <div class = "back">
   <div class = "mainPanel">
-    <div class="flex flex-col items-center w-[10%] mx-[10px]">
+    <div class="flex flex-col items-center  mx-[10px]">
       <div class="header">Активные</div>
-      <div class = "mt-[60px] container">
+      <div class = "mt-[60px] container active freeze" id="activeId">
         <div class="animated" *ngFor="let order of activeOrders;let i=index;" id="active{{i}}">
           <app-order [order]="order"></app-order>
         </div>
       </div>
     </div>
-    <div class="flex flex-col items-center w-[10%] mx-[10px]">
+    <div class="flex flex-col items-center  mx-[10px]">
       <div class="header">В готовке</div>
-      <div class = "mt-[60px] container">
+      <div class = "mt-[60px] container active cooking">
         <div class="animated" *ngFor="let order of cookingOrders;let i=index;" id="cooking{{i}}">
-          <app-order [order]="order">
-          </app-order>
+          <app-order [order]="order"></app-order>
         </div>
       </div>
     </div>
-    <div class="flex flex-col items-center w-[10%] mx-[10px]">
+    <div class="flex flex-col items-center  mx-[10px]">
       <div class="header">Ждут сборки</div>
-      <div class = "mt-[60px] container">
-        <div class="animated" *ngFor="let order of cookedOrders;let i=index;" id="cooked{{i}}">
-          <app-order [order]="order">
-          </app-order>
+      <div div class = "mt-[60px] container cooking cooked ">
+        <div class="animated" *ngFor="let order of cookedOrders;let i=index;" id="cooked{{i}}" >
+          <app-order [order]="order"></app-order>
         </div>
       </div>
     </div>
-    <div class="flex flex-col items-center w-[10%] mx-[10px]">
+    <div class="flex flex-col items-center  mx-[10px]">
       <div class="header">Собираются</div>
-      <div class = "mt-[60px] container">
-        <div class="animated" *ngFor="let order of servingOrders;let i=index;" id="servig{{i}}">
-          <app-order [order]="order">
-          </app-order>
+      <div class = "mt-[60px] container cooked serving">
+        <div class="animated" *ngFor="let order of servingOrders;let i=index;" id="serving{{i}}" >
+          <app-order [order]="order"></app-order>
         </div>
       </div>
     </div>
-    <div class="flex flex-col items-center w-[10%] mx-[10px]">
+    <div class="flex flex-col items-center  mx-[10px]">
       <div class="header">Готовы</div>
-      <div class = "mt-[60px] container">
-        <div class="animated" *ngFor="let order of servedOrders;let i=index;" id="served{{i}}">
-          <app-order [order]="order">
-          </app-order>
+      <div class = "mt-[60px] container serving served">
+        <div class="animated" *ngFor="let order of servedOrders;let i=index;" id="served{{i}}" >
+          <app-order [order]="order"></app-order>
         </div>
       </div>
     </div>
-    <div class="flex flex-col items-center w-[10%] mx-[10px]">
+    <div class="flex flex-col items-center  mx-[10px]">
       <div class="header">Заморожены</div>
-      <div class = "mt-[60px] container">
-        <div class="animated" *ngFor="let order of freezedOrders; let i=index;" id="freezed{{i}}">
-          <app-order [order]="order">
-          </app-order>
+      <div class = "mt-[60px] container active cooked serving served cooking freeze" id="freezedId">
+        <div class="animated" *ngFor="let order of freezedOrders; let i=index;" id="freeze{{i}}" name="freezeName" >
+          <app-order [order]="order"></app-order>
         </div>
       </div>
     </div>
