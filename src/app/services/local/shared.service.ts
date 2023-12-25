@@ -50,4 +50,8 @@ export class SharedService {
   notifyChangingEvent = this.notifyChanging.asObservable();
   emitAddingNotify(change:any){this.notifyChanging.next(change);}
 
+  private filterChanging = new Subject<any>;
+  filterChangingEvent = this.filterChanging.asObservable();
+  emitFilterChanging(change:any){this.filterChanging.next(change);}
+
 }
