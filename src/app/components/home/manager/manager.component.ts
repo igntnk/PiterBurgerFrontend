@@ -49,7 +49,6 @@ export class ManagerComponent implements OnInit{
 
   mapToDrag(orders: Order[]){
     for(let order of orders){
-      debugger;
       switch(order.status){
         case 'Поступил':
           order.nextStatus = "Начать готовить";
