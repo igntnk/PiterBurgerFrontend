@@ -32,11 +32,12 @@ export class CustomerService {
       return this.http.get(this.customerUrl+"groups").pipe();
    }
 
-   getProductsFromGroups(id: number,page:number,size:number):Observable<any>{
+   getProductsFromGroups(id: number,page:number,size:number,filter: string):Observable<any>{
     const params = new HttpParams()
     .set("id", id)
     .set("page",page)
-    .set("size",size);
+    .set("size",size)
+    .set("filter",filter);
     return this.http.get(this.customerUrl+ "grouprod", {params}).pipe();
    }
 
@@ -52,6 +53,7 @@ export class CustomerService {
   }
 
   messageToSendOrder(order: Order){
+    debugger;
     if (!this.authService.LoggedUser.email){
       this.routes.navigateByUrl("/login");
       return;

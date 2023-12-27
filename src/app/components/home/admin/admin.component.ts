@@ -1,3 +1,4 @@
+import { SharedService } from 'src/app/services/local/shared.service';
 import { Component } from '@angular/core';
 import '@angular/compiler';
 import { AuthService } from '../../../auth/auth.service';
@@ -8,15 +9,23 @@ import { OrderService } from 'src/app/services/order.service';
 
 @Component({
   selector: 'app-admin',
-  templateUrl: './admin.component.html'
+  templateUrl: './admin.component.html',
+  styleUrls:['./admin.component.css']
 })
 export class AdminComponent {
 
   orders: Order[];
 
   constructor(
-    private orderService: OrderService
+    private sharedService:SharedService
   ){
+    this.sharedService.emitChangingView("admin");
+
+    document.documentElement.style.setProperty("--createUserLeft","-600px");
+
+    this.sharedService.personPressedEvent.subscribe((data:string)=>{
+      document.documentElement.style.setProperty("--createUserLeft",data+"px");
+    })
   }
 
 }

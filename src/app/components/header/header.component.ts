@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { share } from 'rxjs';
 import { OrderItem } from 'src/app/model/orderItem';
 import { SharedService } from 'src/app/services/local/shared.service';
 
@@ -12,6 +13,7 @@ export class HeaderComponent {
 
   groupBtnStatus = false;
   bucketBtnStatus = false;
+  personPressed = false;
 
   productsAmount = 0;
 
@@ -24,18 +26,21 @@ export class HeaderComponent {
     private routes: Router,
     private sharedService: SharedService
   ){
-    sharedService.bucketPressEvent.subscribe(()=>{
-      if(this.bucketBtnStatus)
-        this.bucketBtnStatus = false;
-      else
-        this.bucketBtnStatus = true;
-  })
-
     sharedService.productAddedEvent.subscribe(()=> this.productsAmount++);
 
     sharedService.deleteItemEvent.subscribe((data:OrderItem)=>this.productsAmount-=data.count);
 
     sharedService.clearBucketEvent.subscribe(()=>this.productsAmount = 0)
+
+    sharedService.personPressedEvent.subscribe(()=>{
+      if(this.personPressed) this.personPressed = false;
+      else this.personPressed = true;
+    });
+
+    sharedService.bucketPressEvent.subscribe(()=>{
+      if(this.bucketBtnStatus) this.bucketBtnStatus = false;
+      else this.bucketBtnStatus = true;
+    });
 
     sharedService.viewSet.subscribe(data=>{
       switch(data){
@@ -93,6 +98,15 @@ export class HeaderComponent {
     }
     else{
       this.sharedService.emitBucketPressed("0");
+    }
+  }
+
+  onPersonClicked(){
+    if(this.personPressed){
+      this.sharedService.emitPersonPressing("-600");
+    }
+    else{
+      this.sharedService.emitPersonPressing("20");
     }
   }
 }

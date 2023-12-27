@@ -1,0 +1,22 @@
+:root{
+  --createUserLeft:"---";
+}
+
+#mainAdmin{
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+}
+
+#mainAdmin::-webkit-scrollbar{
+  display: none;
+}
+
+app-person-card{
+  position: absolute;
+  left: var(--createUserLeft);
+  top:50%;
+  transform: translateY(-50%);
+
+  transition: 800ms;
+}

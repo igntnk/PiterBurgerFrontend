@@ -16,12 +16,11 @@
 #nameString{
   background-color: #00000000;
   border-radius: 15px;
-  width: 20%;
   color: #FFE3CA;
   text-align: center;
   outline: none;
   padding: 20px;
-  width: 80%;
+  width: 100%;
   font-size: 60px;
 }
 

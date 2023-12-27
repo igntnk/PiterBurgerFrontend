@@ -1,0 +1,48 @@
+<div id="mainCard">
+  <div id="headerHandler">
+    <h1 id="createHeader">{{headerText}}</h1>
+  </div>
+  <div id="inputs">
+    <h3>Введите данные пользователя</h3>
+    <div id="inputWithPhoto">
+      <div id="photoBorder">
+        <mat-icon id="personIcon">person</mat-icon>
+      </div>
+      <div class="flex flex-col w-fit justify-center items-center ml-[10px]">
+        <input [(ngModel)]="name" type="text" placeholder="Имя"/>
+        <input [(ngModel)]="email" type="text" placeholder="Почта"/>
+        <input [(ngModel)]="password" type="text" placeholder="Пароль"/>
+      </div>
+    </div>
+    <div class="dropdown">
+      <button class="select">
+        <span class="selected">Мэнеджер</span>
+        <div class="caret"></div>
+      </button>
+      <ul class="menu">
+        <li class = "active">Мэнеджер</li>
+        <li>Работник</li>
+        <li>Покупатель</li>
+      </ul>
+    </div>
+  </div>
+  <div id="allWorkers">
+    <div id="personCard" *ngFor="let user of users; let i=index;">
+      <div id="photoBorder" class="mb-[10px]">
+        <mat-icon id="userphoto">person</mat-icon>
+      </div>
+      <div>Работник №{{user.id}}</div>
+      <div>{{user.fio}}</div>
+      <div>{{user.status}}</div>
+      <button (click)="deleteUser(user.id)" class="pBtn">Удалить</button>
+    </div>
+  </div>
+  <div id="footerHandler">
+    <div>
+      <button (click)="createUser()" class="allBtn">Создать</button>
+      <button (click)="makeBigger()" class="allBtn">Все работники</button>
+      <button (click)="hidePanel()" class="allBtn">Отмена</button>
+      <button (click)="mainView()" id="backBtn">Обратно</button>
+    </div>
+  </div>
+</div>

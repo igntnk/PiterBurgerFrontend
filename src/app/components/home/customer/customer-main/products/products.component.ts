@@ -15,6 +15,8 @@ export class ProductsComponent implements OnInit{
 
   products: Product[];
   selectedGroupId: number;
+  filterText: string = "";
+  currentPage: Page;
 
   constructor(
     private customerService: CustomerService,
@@ -24,21 +26,31 @@ export class ProductsComponent implements OnInit{
     sharedService.groupSelected.subscribe(data=>{
       this.changeParams("0%");
       this.selectedGroupId = data;
-      setTimeout(()=>this.customerService.getProductsFromGroups(data,0,12).subscribe(data=>{
+      setTimeout(()=>this.customerService.getProductsFromGroups(data,0,12,this.filterText).subscribe(data=>{
         this.products = data.content;
-        sharedService.emitPaginatorChanging(new Page(data.number,data.size,data.totalElements));
-        console.log(data);
+        this.currentPage = new Page(data.number,data.size,data.totalElements);
+        sharedService.emitPaginatorChanging(this.currentPage);
         setTimeout(()=>this.changeParams("100%"),300);
       }),400);
     })
 
     sharedService.changinByPaginatorEvent.subscribe(data=>{
       this.changeParams("0%");
-      setTimeout(()=>this.customerService.getProductsFromGroups(this.selectedGroupId,data.page,data.size).subscribe(data=>{
+      setTimeout(()=>this.customerService.getProductsFromGroups(this.selectedGroupId,data.page,data.size,this.filterText).subscribe(data=>{
         this.products = data.content;
-        sharedService.emitPaginatorChanging(new Page(data.number,data.size,data.totalElements));
-        console.log(data);
+        this.currentPage = new Page(data.number,data.size,data.totalElements);
         setTimeout(()=>this.changeParams("100%"),300);
+      }),400);
+    })
+
+    sharedService.filterChangingEvent.subscribe((data:string)=>{
+      this.changeParams("0%");
+      this.filterText = data;
+      setTimeout(()=>this.customerService.getProductsFromGroups(this.selectedGroupId,0,12,this.filterText).subscribe(data=>{
+        this.products = data.content;
+        this.currentPage = new Page(data.number,data.size,data.totalElements);
+        sharedService.emitPaginatorChanging(this.currentPage);
+        setTimeout(()=>{this.changeParams("100%")},300);
       }),400);
     })
   }

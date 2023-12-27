@@ -12,6 +12,7 @@
 
 #notify{
   padding: 5px 20px 0 20px;
+  width: fit-content;
   border-radius: 15px;
   height: 80px;
   box-shadow: 0 0 10px #00000055;

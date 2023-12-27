@@ -46,6 +46,8 @@ import { NotifyContainerComponent } from './components/notify-container/notify-c
 import { OrderComponent } from './components/home/order/order.component';
 import { WebSocketService} from './services/web-socket.service';
 import { WebSocketConfig } from './auth/config/web-scoket-config';
+import { SearchComponent } from './components/home/customer/customer-main/search/search.component';
+import { PersonCardComponent } from './components/home/admin/person-card/person-card.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +68,9 @@ import { WebSocketConfig } from './auth/config/web-scoket-config';
     PaginatorControllComponent,
     CustomerPersonComponent,
     OrderComponent,
-    NotifyContainerComponent
+    NotifyContainerComponent,
+    SearchComponent,
+    PersonCardComponent
   ],
   imports: [
     BrowserModule,

@@ -1,15 +1,16 @@
 import { CustomerService } from 'src/app/services/customer-service.service';
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnChanges, OnInit } from '@angular/core';
 import { Order } from 'src/app/model/order';
 import { OrderService } from 'src/app/services/order.service';
 import { Title } from '@angular/platform-browser';
+import { jsDocComment } from '@angular/compiler';
 
 @Component({
   selector: 'app-worker',
   templateUrl: './worker.component.html',
   styleUrls: ["./worker.component.css"]
 })
-export class WorkerComponent {
+export class WorkerComponent{
 
   orders: Order[]=[];
 

@@ -50,4 +50,15 @@ export class SharedService {
   notifyChangingEvent = this.notifyChanging.asObservable();
   emitAddingNotify(change:any){this.notifyChanging.next(change);}
 
+  private filterChanging = new Subject<any>;
+  filterChangingEvent = this.filterChanging.asObservable();
+  emitFilterChanging(change:any){this.filterChanging.next(change);}
+
+  private personPressed = new Subject<any>;
+  personPressedEvent = this.personPressed.asObservable();
+  emitPersonPressing(change:any){this.personPressed.next(change);}
+
+  private userDeleted = new Subject<any>;
+  userDeletedEvent = this.userDeleted.asObservable();
+  emitUserDeleting(change:any){this.userDeleted.next(change);}
 }

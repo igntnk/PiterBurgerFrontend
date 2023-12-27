@@ -1,0 +1,37 @@
+#mainPanel{
+  margin-top: 20px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+input{
+  width: 80%;
+  max-width: 600px;
+  height: 40px;
+  background-color: #554339;
+  border-radius: 8px;
+  outline: none;
+  box-shadow: 0 0 15px #00000055;
+  color: #FFE3CA;
+  padding-left: 20px;
+  font-size: 20px;
+
+  transition: transform 300ms;
+}
+
+input::placeholder{
+  color: #FFE3CA;
+}
+
+input:hover{
+  transform: scale(108%);
+}
+
+input:active{
+  transform: scale(105%);
+}
+
+input:foucs{
+  transform: scale(106%);
+}

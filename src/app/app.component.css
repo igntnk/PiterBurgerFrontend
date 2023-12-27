@@ -9,8 +9,14 @@ app-notify-container{
   position: absolute;
   margin-bottom: 20px;
   bottom: 0px;
+  z-index: 100;
 }
 
 html{
   background-color: #FFE3CA;
+}
+
+app-admin{
+  width: 100vw;
+  height: 100vh;
 }

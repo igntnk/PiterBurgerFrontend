@@ -31,6 +31,7 @@ export class PaginatorControllComponent implements AfterViewInit{
         this.pageInfo.page-1,
         this.pageInfo.size,
         this.pageInfo.total));
+      this.pageInfo.page-=1;
     }
   }
 
@@ -40,6 +41,7 @@ export class PaginatorControllComponent implements AfterViewInit{
         this.pageInfo.page+1,
         this.pageInfo.size,
         this.pageInfo.total));
+      this.pageInfo.page+=1;
     }
   }
 
