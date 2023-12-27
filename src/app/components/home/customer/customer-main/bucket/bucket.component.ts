@@ -37,6 +37,13 @@ export class BucketComponent{
       this.items.splice(this.items.findIndex((element)=> element == data),1);
     })
 
+    this.customerService.subscribeToCustomerOrders().subscribe((data)=>{
+      this.items = [];
+      this.allPrice = 0;
+      this.sharedService.emitClearingBucket("");
+      this.sharedService.emitAddingNotify(new Notify("Успешно","Ваш заказ отправлен! Спасибо за покупку=)))","#554339"));
+    })
+
   }
 
   onHideBtnPressed(){
@@ -50,9 +57,5 @@ export class BucketComponent{
 
   onSendOrderPressed(){
     this.customerService.messageToSendOrder(new Order(this.comment,this.items));
-    this.items = [];
-    this.allPrice = 0;
-    this.sharedService.emitClearingBucket("");
-    this.sharedService.emitAddingNotify(new Notify("Успешно","Ваш заказ отправлен! Спасибо за покупку=)))","#554339"));
   }
 }

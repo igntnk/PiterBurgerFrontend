@@ -2,10 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.cdnfonts.com/css/lora');
+
 @font-face {
   font-family: 'Dorsa';
   font-style: normal;
   font-weight: 400;
   src: local('Dorsa'), url('https://fonts.cdnfonts.com/s/15697/Dorsa-Regular.woff') format('woff');
 }
+
+
 

@@ -53,6 +53,7 @@ export class CustomerService {
   }
 
   messageToSendOrder(order: Order){
+    debugger;
     if (!this.authService.LoggedUser.email){
       this.routes.navigateByUrl("/login");
       return;

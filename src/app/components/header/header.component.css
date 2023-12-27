@@ -38,7 +38,7 @@
 
 }
 
-#groupBtn{
+#groupBtn,#personBtn{
   position: absolute;
   left: 30px;
   top: 30px;
@@ -68,11 +68,11 @@
     all 300ms;
 }
 
-#groupBtn:hover,#bucketBtn:hover{
+#groupBtn:hover,#bucketBtn:hover,#personBtn:hover{
   transform: scale(110%);
 }
 
-#groupBtn:active,#bucketBtn:active{
+#groupBtn:active,#bucketBtn:active,#personBtn:active{
   transform: scale(105%);
 }
 

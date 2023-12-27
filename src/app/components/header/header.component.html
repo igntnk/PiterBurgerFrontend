@@ -10,5 +10,8 @@
     <button *ngIf="customerView" (click)="onBucketPressed()" id="bucketBtn">
       <mat-icon matBadge={{productsAmount}}>shopping_basket</mat-icon>
     </button>
+    <button *ngIf="adminView" (click)="onPersonClicked()" id="personBtn">
+      <mat-icon >person</mat-icon>
+    </button>
   </div>
 </div>
