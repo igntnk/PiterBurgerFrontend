@@ -29,10 +29,10 @@ export class OrderService {
     );
   }
 
-  getManagerOrders():Observable<any>{
+  getManagerOrders(lastLoggined: string):Observable<any>{
     const headers = new HttpHeaders({"X-Requested-With": "XMLHttpRequest"});
     return this.http.get(this.orderUrl + "manager",{headers}).pipe(
-      catchError(this.handleLoginError("manager",[]))
+      catchError(this.handleLoginError(lastLoggined,[]))
     );
   }
 
@@ -119,8 +119,8 @@ export class OrderService {
         this.sessionStorage.set("lastUrl",lastUrl);
         this.routes.navigateByUrl("/login");
       }
-      else if(error.status === 404){
-        console.log("404");
+      else if(error.status === 403){
+        this.routes.navigateByUrl("customer/main");
       }
       else if(error.status === 500){
         console.log("500");

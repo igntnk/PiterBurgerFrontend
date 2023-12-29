@@ -54,7 +54,7 @@ export class HeaderComponent {
           break;
         case 'worker':
           this.resetViews();
-          this.managerView = true;
+          this.workerView = true;
           break;
         case 'admin':
           this.resetViews();

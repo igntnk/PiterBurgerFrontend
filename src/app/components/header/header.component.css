@@ -86,3 +86,13 @@
     top: -50px;
   }
 }
+
+#smallText{
+  color: #403955;
+  position: absolute;
+  bottom: 5px;
+
+  font-family: 'Lora';
+  font-weight: 600;
+  font-size: 13px;
+}

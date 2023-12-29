@@ -4,6 +4,7 @@ import { Order } from 'src/app/model/order';
 import { OrderService } from 'src/app/services/order.service';
 import { Title } from '@angular/platform-browser';
 import { jsDocComment } from '@angular/compiler';
+import { SharedService } from 'src/app/services/local/shared.service';
 
 @Component({
   selector: 'app-worker',
@@ -15,7 +16,8 @@ export class WorkerComponent{
   orders: Order[]=[];
 
   constructor(
-    private orderService: OrderService
+    private orderService: OrderService,
+    private sharedService: SharedService
   ){
     orderService.getWorkerOrders().subscribe(data=>{
       this.orders = this.orderService.mapOrders(data);
@@ -29,6 +31,8 @@ export class WorkerComponent{
       if(index == -1){this.orders.push(order)}
       else{this.orders[index] = order;}
     })
+
+    this.sharedService.emitChangingView("worker");
   }
 
   changeOrderStatus(data:Order){
