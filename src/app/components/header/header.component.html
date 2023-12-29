@@ -3,10 +3,15 @@
     <button *ngIf="customerView" (click)="onGroupMenyPressed()" id="groupBtn">
       <mat-icon>fastfood</mat-icon>
     </button>
-    <button (click)="onLogoPressed()" id = "logo">
-       <div id = "piter">Piter</div>
-      <div id = "burger">Burger</div>
-    </button>
+    <div class = "flex flex-col items-center">
+      <button (click)="onLogoPressed()" id = "logo">
+        <div id = "piter">Piter</div>
+        <div id = "burger">Burger</div>
+      </button>
+      <div *ngIf="workerView" id = "smallText">Работник</div>
+      <div *ngIf="managerView" id = "smallText">Менеджер</div>
+      <div *ngIf="adminView" id = "smallText">Админ</div>
+    </div>
     <button *ngIf="customerView" (click)="onBucketPressed()" id="bucketBtn">
       <mat-icon matBadge={{productsAmount}}>shopping_basket</mat-icon>
     </button>

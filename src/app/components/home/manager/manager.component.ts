@@ -1,5 +1,5 @@
 import { WebSocketService } from './../../../services/web-socket.service';
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Message } from '@stomp/stompjs';
 import { Subscription, map, share } from 'rxjs';
 import { Notify } from 'src/app/model/notify';
@@ -25,11 +25,13 @@ export class ManagerComponent implements OnInit{
 
   showNotice:boolean;
 
+  @Input() loggined: string  = "manager";
+
   constructor(
     private orderService: OrderService,
     private sharedService: SharedService
   ){
-    orderService.getManagerOrders().subscribe(data=>{
+    orderService.getManagerOrders(this.loggined).subscribe(data=>{
       this.mapToDrag(this.orderService.mapOrders(data));
     })
 
@@ -40,10 +42,12 @@ export class ManagerComponent implements OnInit{
       this.servingOrders=[];
       this.servedOrders=[];
       this.freezedOrders=[];
-      orderService.getManagerOrders().subscribe(data=>{
+      orderService.getManagerOrders(this.loggined).subscribe(data=>{
         this.mapToDrag(this.orderService.mapOrders(data));
       })
     })
+
+    sharedService.emitChangingView("manager");
 
   }
 
@@ -173,16 +177,15 @@ export class ManagerComponent implements OnInit{
         document.addEventListener('mousemove', onMouseMove);
 
         panelClone.onmouseup = function() {
-          orderService.subscribeToManagerOrders().subscribe(()=>{
-            setTimeout(()=>{
-              panelClone.remove();
-              panel.remove();
-            },800);
-          })
-
           let statusPanel = panelClone.querySelector('.status') as HTMLElement;
 
           if (currentDroppable != panelParent && currentDroppable) {
+            orderService.subscribeToManagerOrders().subscribe(()=>{
+              setTimeout(()=>{
+                panelClone.remove();
+                panel.remove();
+              },800);
+            })
             setDefaultDropable();
             statusPanel.style.scale = "70%";
             statusPanel.style.opacity = "0";
